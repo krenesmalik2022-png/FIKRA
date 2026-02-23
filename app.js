@@ -173,9 +173,25 @@ function setupEventListeners() {
         const btn = document.getElementById(id);
         if (btn) {
             btn.onclick = () => {
-                btn.classList.toggle('active');
-                const type = id === 'voice-btn' ? '🎙️ Voice note' : '📹 Video';
-                showToast(btn.classList.contains('active') ? `${type} captured` : `${type} removed`);
+                if (btn.classList.contains('active')) {
+                    btn.classList.remove('active');
+                    btn.innerHTML = btn.dataset.originalHTML;
+                    showToast('Media cleared.');
+                    return;
+                }
+                if (!btn.dataset.originalHTML) btn.dataset.originalHTML = btn.innerHTML;
+
+                // Simulate recording
+                btn.classList.add('recording');
+                btn.innerHTML = `<span class="ms-btn-text" style="color:#FF3B3B; animation: pulse 1s infinite;">RECORDING...</span>`;
+
+                setTimeout(() => {
+                    btn.classList.remove('recording');
+                    btn.classList.add('active');
+                    const type = id === 'voice-btn' ? 'VOICE_INTEL' : 'VIDEO_INTEL';
+                    btn.innerHTML = `<span class="ms-btn-text" style="color:#00FF41;">[x] ${type}_SECURED</span>`;
+                    showToast(`✅ ${type} Secured`);
+                }, 2000);
             };
         }
     });
@@ -193,6 +209,21 @@ function setupEventListeners() {
             if (signalFill) {
                 const signalPct = Math.min(100, Math.floor((len / 50) * 100)); // Fills at 50 chars
                 signalFill.style.width = `${signalPct}%`;
+                if (signalPct === 100) signalFill.style.background = '#FF3B3B';
+                else signalFill.style.background = 'var(--tac-cyan)';
+            }
+
+            // System Logs Reactivity
+            const msLogs = document.querySelector('.ms-system-logs');
+            if (msLogs && Math.random() > 0.6) {
+                const logs = ["> ANALYZING COGNITIVE PATTERN...", "> ENCRYPTING PAYLOAD...", "> OPTIMIZING SIGNAL ROUTING...", "> TRACING NEURAL PATHWAYS...", "> COMPILING INTEL DATA..."];
+                const logEntry = document.createElement('div');
+                logEntry.className = 'ms-log-entry';
+                logEntry.textContent = logs[Math.floor(Math.random() * logs.length)];
+                logEntry.style.color = Math.random() > 0.8 ? '#FF3B3B' : '#00FF41';
+                msLogs.appendChild(logEntry);
+                msLogs.scrollTop = msLogs.scrollHeight;
+                if (msLogs.children.length > 6) msLogs.removeChild(msLogs.firstChild);
             }
 
             // Protocol Checklist
@@ -211,7 +242,7 @@ function setupEventListeners() {
                 // Dynamic Pulse Intensity
                 if (canSubmit) {
                     const intensity = Math.min(1.5, 0.8 + (len / 200));
-                    submitBtn.style.animationDuration = `${2 / intensity}s`;
+                    submitBtn.style.animationDuration = `${2 / Math.max(0.5, intensity)}s`;
                     submitBtn.style.boxShadow = `0 0 ${20 * intensity}px var(--tac-amber-dim)`;
                 } else {
                     submitBtn.style.animationDuration = '2s';
@@ -324,28 +355,35 @@ function renderFeed() {
 
 function createCard(post) {
     const card = document.createElement('article');
-    card.className = 'card' + (likedPosts.has(post.id) ? ' liked-state' : '');
+    card.className = 'reel-card' + (likedPosts.has(post.id) ? ' liked-state' : '');
     const initial = post.user.charAt(1).toUpperCase();
 
     card.innerHTML = `
-        ${post.picked ? '<div class="picked-badge">PICKED</div>' : ''}
-        <div class="card-tag">${post.tag}</div>
-        <p class="card-idea">${post.idea}</p>
-        <div class="card-meta">
-            <div class="card-user">
+        <div class="reel-content">
+            ${post.picked ? '<div class="picked-badge">PICKED</div>' : ''}
+            <div class="reel-tag">${post.tag}</div>
+            <p class="reel-idea">${post.idea}</p>
+            <div class="reel-meta">
                 <div class="user-avatar">${initial}</div>
                 <div class="user-details">
                     <span class="name">${post.user}</span>
                     <span class="city">${post.city}</span>
                 </div>
             </div>
-            <div class="card-actions">
-                <button class="like-btn" onclick="toggleLike('${post.id}', this)">
-                    <span class="like-icon">⚡</span>
-                    <span class="like-count">${formatEnergy(post.energy)}</span>
-                </button>
-                <button class="remix-btn-v3" onclick="remixIdea('${post.id}')">REMIX</button>
-            </div>
+        </div>
+        <div class="reel-actions">
+            <button class="reel-btn like-btn" onclick="toggleLike('${post.id}', this)">
+                <div class="reel-btn-icon"><span class="like-icon">⚡</span></div>
+                <span class="reel-btn-count like-count">${formatEnergy(post.energy)}</span>
+            </button>
+            <button class="reel-btn remix-btn" onclick="remixIdea('${post.id}')">
+                <div class="reel-btn-icon">🔁</div>
+                <span class="reel-btn-count">${post.remixes}</span>
+            </button>
+            <button class="reel-btn share-btn" onclick="showToast('Link copied!')">
+                <div class="reel-btn-icon">📤</div>
+                <span class="reel-btn-count">Share</span>
+            </button>
         </div>
     `;
     return card;
@@ -355,14 +393,17 @@ function toggleLike(id, btn) {
     const post = appFeedData.find(i => i.id === id);
     if (!post) return;
 
+    // Support both old .card and new .reel-card class names
+    const cardEl = btn.closest('.card') || btn.closest('.reel-card');
+
     if (likedPosts.has(id)) {
         likedPosts.delete(id);
         post.energy -= 100;
-        btn.closest('.card').classList.remove('liked-state');
+        if (cardEl) cardEl.classList.remove('liked-state');
     } else {
         likedPosts.add(id);
         post.energy += 100;
-        btn.closest('.card').classList.add('liked-state');
+        if (cardEl) cardEl.classList.add('liked-state');
         showToast('⚡ Energy Boosted');
     }
 
@@ -471,15 +512,35 @@ function handleDropSubmit(e) {
     // ── Pre-launch sequence
     submitBtn.disabled = true;
     submitBtn.textContent = "ENCRYPTING...";
+    submitBtn.classList.add('transmitting');
+    document.body.classList.add('shake-anim');
+
+    // Add rapid logs
+    const msLogs = document.querySelector('.ms-system-logs');
+    if (msLogs) {
+        let count = 0;
+        const logInt = setInterval(() => {
+            const entry = document.createElement('div');
+            entry.className = 'ms-log-entry';
+            entry.style.color = '#FFB000';
+            entry.textContent = `> UPLOADING BLOCK ${Math.floor(Math.random() * 9999)}...`;
+            msLogs.appendChild(entry);
+            msLogs.scrollTop = msLogs.scrollHeight;
+            if (count++ > 10) clearInterval(logInt);
+        }, 100);
+    }
+
     triggerGlitch(200);
 
     setTimeout(() => {
-        submitBtn.textContent = "BROADCASTING...";
+        submitBtn.textContent = "BROADCASTING SIGNAL...";
         showToast("📡 HANDSHAKE ESTABLISHED...");
-        triggerGlitch(300);
-    }, 800);
+        triggerGlitch(400);
+    }, 1000);
 
     setTimeout(() => {
+        document.body.classList.remove('shake-anim');
+        submitBtn.classList.remove('transmitting');
         const newPost = {
             id: 'FK-' + Date.now(),
             idea: input.value.trim(),
@@ -495,10 +556,10 @@ function handleDropSubmit(e) {
         saveData();
         updateFeedStats();
 
-        submitBtn.textContent = "LAUNCH MISSION";
+        submitBtn.textContent = "TRANSMIT SIGNAL";
         document.getElementById('success-overlay')?.classList.add('active');
         showToast("✅ MISSION SUCCESSFUL");
-    }, 2000);
+    }, 2400);
 }
 
 // ── PROFILE ───────────────────────────────────────
@@ -783,26 +844,65 @@ function initParticles() {
     if (!ctx) return;
     bgCanvas.width = window.innerWidth;
     bgCanvas.height = window.innerHeight;
-    particles = Array.from({ length: 40 }, () => ({
+    const isDropPage = window.location.pathname.includes('drop.html');
+    const particleCount = isDropPage ? 80 : 40; // Dense network for drop page
+
+    particles = Array.from({ length: particleCount }, () => ({
         x: Math.random() * bgCanvas.width,
         y: Math.random() * bgCanvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 2,
-        opacity: Math.random() * 0.4
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        size: isDropPage ? Math.random() * 2 + 1 : Math.random() * 2,
+        opacity: Math.random() * 0.5
     }));
 }
+
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
 
 function animateParticles() {
     if (!ctx) return;
     ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-    particles.forEach(p => {
+    const isDropPage = window.location.pathname.includes('drop.html');
+
+    // Cyber-grid or constellation connections
+    for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
         p.x += p.vx; p.y += p.vy;
+
+        // Repel from mouse
+        const dx = mouseX - p.x;
+        const dy = mouseY - p.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 150) {
+            p.x -= dx * 0.02;
+            p.y -= dy * 0.02;
+        }
+
         if (p.x < 0 || p.x > bgCanvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > bgCanvas.height) p.vy *= -1;
-        ctx.fillStyle = `rgba(138, 63, 255, ${p.opacity})`;
+
+        ctx.fillStyle = isDropPage ? `rgba(0, 210, 255, ${p.opacity})` : `rgba(138, 63, 255, ${p.opacity})`;
         ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
-    });
+
+        if (isDropPage) {
+            for (let j = i + 1; j < particles.length; j++) {
+                let p2 = particles[j];
+                const pdist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                if (pdist < 100) {
+                    ctx.strokeStyle = `rgba(0, 210, 255, ${0.15 * (1 - pdist / 100)})`;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
     requestAnimationFrame(animateParticles);
 }
 

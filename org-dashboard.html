@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="FIKRA Organization Dashboard — Browse and pick youth ideas from around the globe." /><title>FIKRA — Global Organization Dashboard</title><link rel="icon" href="favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="shared-nav.css" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" /><style> :root {
+< !DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="FIKRA Organization Dashboard — Browse and pick youth ideas from around the globe." /><title>FIKRA — Global Organization Dashboard</title><link rel="icon" href="favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="shared-nav.css" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" /><style> :root {
     --bg-primary: #000000;
     --bg-card: rgba(20, 20, 20, 0.7);
     --bg-surface: rgba(255, 255, 255, 0.05);
@@ -132,6 +132,7 @@ body {
 
 .stat-card {
     background: var(--bg-card);
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     border: var(--glass-border);
     border-radius: var(--radius-xl);
@@ -452,6 +453,7 @@ body {
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.8);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     z-index: 2000;
     display: flex;
@@ -554,10 +556,10 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
-</style></head><body class="fikra-nav-offset"><!-- Global Live Ticker --><div class="global-live-ticker"><div class="ticker-content"><span class="ticker-item"><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM TOKYO</span><span class="ticker-item"><span class="ticker-dot"></span>NEURAL SYNC ACTIVE: 1.2K THINKERS ONLINE</span><span class="ticker-item"><span class="ticker-dot"></span>REMIX SIGNAL DETECTED IN LONDON</span><span class="ticker-item"><span class="ticker-dot"></span>BROADCASTING GLOBAL INTELLIGENCE 24/7</span><span class="ticker-item"><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM NEW YORK</span></div></div><nav class="fikra-nav"><div class="fikra-nav-inner"><a href="index.html" class="fikra-nav-logo"><span class="fikra-logo-text">FIKRA</span><span class="fikra-logo-dot">.</span></a><div class="fikra-nav-divider"></div><div class="fikra-nav-badge org">Org Dashboard</div><div class="fikra-nav-links"><a href="index.html" class="fikra-nav-link" id="snl-feed">Feed</a><a href="drop.html" class="fikra-nav-link" id="snl-drop">Drop Idea</a><a href="profile.html" class="fikra-nav-link" id="snl-profile">Profile</a><a href="dashboard.html" class="fikra-nav-link" id="snl-dashboard">My Intel</a><a href="admin-dashboard.html" class="fikra-nav-link">Admin</a></div><div class="fikra-nav-right"><span style="font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); margin-right: 12px;">Global Youth Foundation</span><button class="fikra-nav-btn" onclick="exportReport()" title="Export Report"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>Export </button><a href="index.html" class="fikra-nav-btn back-btn">← Back</a></div></div></nav><div class="layout"><aside class="sidebar"><input class="sidebar-search" id="search-input" type="text" placeholder="Search ideas..." autocomplete="off" oninput="applyFilters()" /><div class="filter-block"><div class="filter-label">Sort By</div><div class="filter-list"><button class="filter-item active" data-sort="recent" onclick="setSort(this,'recent')">Most Recent <span class="filter-badge" id="badge-total">0</span></button><button class="filter-item" data-sort="remixes" onclick="setSort(this,'remixes')">Most Remixed</button><button class="filter-item" data-sort="saved" onclick="setSort(this,'saved')">Saved <span class="filter-badge" id="badge-saved">0</span></button><button class="filter-item" data-sort="picked" onclick="setSort(this,'picked')">Picked <span class="filter-badge" id="badge-picked">0</span></button></div></div><div class="filter-block"><div class="filter-label">Location (Global)</div><div class="filter-list" id="city-list"></div></div><div class="filter-block"><div class="filter-label">Theme</div><div class="filter-list" id="theme-list"></div></div><div class="filter-block"><div class="filter-label">Age Group</div><div class="filter-list"><button class="filter-item active" data-age="all" onclick="setAge(this,'all')">All Ages</button><button class="filter-item" data-age="15-17" onclick="setAge(this,'15-17')">15 - 17</button><button class="filter-item" data-age="18-21" onclick="setAge(this,'18-21')">18 - 21</button><button class="filter-item" data-age="22-25" onclick="setAge(this,'22-25')">22 - 25</button></div></div></aside><main class="main"><div class="org-banner"><div class="ob-content"><h2>Empowering the Next Generation</h2><p>Discover raw talent and unfiltered ideas from young visionaries worldwide. Pick the most promising fikras to collaborate,
+</style></head><body class="fikra-nav-offset">< !-- Global Live Ticker --><div class="global-live-ticker"><div class="ticker-content"><span class="ticker-item"><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM TOKYO</span><span class="ticker-item"><span class="ticker-dot"></span>NEURAL SYNC ACTIVE: 1.2K THINKERS ONLINE</span><span class="ticker-item"><span class="ticker-dot"></span>REMIX SIGNAL DETECTED IN LONDON</span><span class="ticker-item"><span class="ticker-dot"></span>BROADCASTING GLOBAL INTELLIGENCE 24/7</span><span class="ticker-item"><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM NEW YORK</span></div></div><nav class="fikra-nav"><div class="fikra-nav-inner"><a href="index.html" class="fikra-nav-logo"><span class="fikra-logo-text">FIKRA</span><span class="fikra-logo-dot">.</span></a><div class="fikra-nav-divider"></div><div class="fikra-nav-badge org">Org Dashboard</div><div class="fikra-nav-links"><a href="index.html" class="fikra-nav-link" id="snl-feed">Feed</a><a href="profile.html" class="fikra-nav-link" id="snl-profile">Profile</a><a href="dashboard.html" class="fikra-nav-link" id="snl-dashboard">My Intel</a><a href="admin-dashboard.html" class="fikra-nav-link">Admin</a></div><div class="fikra-nav-right"><span style="font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); margin-right: 12px;">Global Youth Foundation</span><button class="fikra-nav-btn" onclick="exportReport()" title="Export Report"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>Export </button><a href="index.html" class="fikra-nav-btn back-btn">← Back</a></div></div></nav><div class="layout"><aside class="sidebar"><input class="sidebar-search" id="search-input" type="text" placeholder="Search ideas..." autocomplete="off" oninput="applyFilters()" /><div class="filter-block"><div class="filter-label">Sort By</div><div class="filter-list"><button class="filter-item active" data-sort="recent" onclick="setSort(this,'recent')">Most Recent <span class="filter-badge" id="badge-total">0</span></button><button class="filter-item" data-sort="remixes" onclick="setSort(this,'remixes')">Most Remixed</button><button class="filter-item" data-sort="saved" onclick="setSort(this,'saved')">Saved <span class="filter-badge" id="badge-saved">0</span></button><button class="filter-item" data-sort="picked" onclick="setSort(this,'picked')">Picked <span class="filter-badge" id="badge-picked">0</span></button></div></div><div class="filter-block"><div class="filter-label">Location (Global)</div><div class="filter-list" id="city-list"></div></div><div class="filter-block"><div class="filter-label">Theme</div><div class="filter-list" id="theme-list"></div></div><div class="filter-block"><div class="filter-label">Age Group</div><div class="filter-list"><button class="filter-item active" data-age="all" onclick="setAge(this,'all')">All Ages</button><button class="filter-item" data-age="15-17" onclick="setAge(this,'15-17')">15 - 17</button><button class="filter-item" data-age="18-21" onclick="setAge(this,'18-21')">18 - 21</button><button class="filter-item" data-age="22-25" onclick="setAge(this,'22-25')">22 - 25</button></div></div></aside><main class="main"><div class="org-banner"><div class="ob-content"><h2>Empowering the Next Generation</h2><p>Discover raw talent and unfiltered ideas from young visionaries worldwide. Pick the most promising fikras to collaborate,
 mentor,
 or sponsor their journey.</p></div><div class="ob-stat"><div class="ob-stat-val">24</div><div class="ob-stat-lbl">Global Ideas<br>Pending</div></div></div><div class="stats-row"><div class="stat-card"><div class="stat-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg></div><div class="stat-label">Total Ideas</div><div class="stat-value" id="stat-total">0</div><div class="stat-note"><span>+42</span>this week</div></div><div class="stat-card"><div class="stat-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg></div><div class="stat-label">Views</div><div class="stat-value" id="stat-browsed">0</div><div class="stat-note">in this session</div></div><div class="stat-card"><div class="stat-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg></div><div class="stat-label">Network Reach</div><div class="stat-value" id="stat-youth">0</div><div class="stat-note">across <span>Worldwide</span></div></div></div><div class="pool-header"><div><div class="pool-title">Global Idea Pool</div><div class="pool-count" id="pool-count"></div></div><div class="pool-controls"><select class="select-sort" id="sort-select" title="Sort ideas" aria-label="Sort ideas" onchange="applyFilters()"><option value="recent">Most Recent</option><option value="remixes">Most Remixed</option><option value="energy">Highest Energy</option></select><div class="view-toggle"><button class="view-btn active" id="btn-grid" onclick="setView('grid')" aria-label="Grid view" title="Grid view"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg></button><button class="view-btn" id="btn-list" onclick="setView('list')" aria-label="List view" title="List view"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></svg></button></div></div></div><div class="tag-strip" id="tag-strip"></div><div id="ideas-grid" class="ideas-grid"></div></main></div><div class="modal-bg" id="modal-bg" onclick="onBgClick(event)"><div class="modal"><h2 class="modal-title">Pick This Idea?</h2><p class="modal-desc">You are selecting this idea for your organization's programme. The creator will be notified.</p>
- <div class="modal-preview" id="modal-preview"></div><div class="modal-actions"><button class="modal-cancel" onclick="closeModal()">Cancel</button><button class="modal-confirm" onclick="confirmPick()">Confirm Pick</button></div></div></div><div id="toast" class="toast"></div><script>const IDEAS=[ {
+ <script>const IDEAS=[ {
     id: 1, idea: "Build a youth entrepreneurship hub that runs on solar power and trains local communities in digital skills.", name: "Alex Chen", city: "Singapore", age: "18-21", tag: "Tech", remixes: 142, energy: 9800
 }
 
@@ -767,12 +769,44 @@ function closeModal() {
 
 function confirmPick() {
     if (pendingPickId) {
-        pickedIds.add(pendingPickId);
-        showToast("Idea successfully secured for collaboration.");
-        applyFilters();
+        const confirmBtn=document.querySelector('.modal-confirm');
+        const originalText=confirmBtn.innerText;
+        confirmBtn.innerText="Securing...";
+        confirmBtn.style.opacity="0.7";
+        confirmBtn.style.pointerEvents="none";
+
+        setTimeout(()=> {
+                pickedIds.add(pendingPickId);
+                showToast("Idea successfully secured for collaboration.");
+                applyFilters();
+                closeModal();
+                confirmBtn.innerText=originalText;
+                confirmBtn.style.opacity="1";
+                confirmBtn.style.pointerEvents="auto";
+            }
+
+            , 800);
     }
 
-    closeModal();
+    else {
+        closeModal();
+    }
+}
+
+function onBgClick(event) {
+    if (event.target.id==='modal-bg') {
+        closeModal();
+    }
+}
+
+function exportReport() {
+    showToast("Compiling global intelligence report. Download starting...");
+
+    setTimeout(()=> {
+            showToast("Report successfully exported to secure drive.");
+        }
+
+        , 2500);
 }
 
 function showToast(msg) {
