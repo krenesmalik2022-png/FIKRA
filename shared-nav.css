@@ -1,0 +1,388 @@
+/* ══════════════════════════════════════════════════════
+   FIKRA — Shared Navigation Bar  (shared-nav.css v1)
+   Used by: index.html, org-dashboard.html, admin-dashboard.html
+══════════════════════════════════════════════════════ */
+
+/* ── Reset helpers ── */
+.fikra-nav *,
+.fikra-nav *::before,
+.fikra-nav *::after {
+    box-sizing: border-box;
+}
+
+/* ── Nav container ── */
+.fikra-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: rgba(0, 0, 0, 0.82);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    z-index: 9000;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.fikra-nav-inner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 28px;
+    gap: 0;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+
+
+/* ── Logo ── */
+.fikra-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    text-decoration: none;
+    flex-shrink: 0;
+    margin-right: 4px;
+}
+
+.fikra-logo-text {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+}
+
+.fikra-logo-dot {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--tac-amber);
+}
+
+/* ── Vertical divider ── */
+.fikra-nav-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+    margin: 0 18px;
+}
+
+/* ── Page badge (shows current portal) ── */
+.fikra-nav-badge {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 99px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.04);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.fikra-nav-badge.org {
+    border-color: rgba(0, 210, 255, 0.25);
+    color: #00D2FF;
+    background: rgba(0, 210, 255, 0.06);
+}
+
+.fikra-nav-badge.admin {
+    border-color: rgba(255, 59, 59, 0.25);
+    color: #FF6B6B;
+    background: rgba(255, 59, 59, 0.06);
+}
+
+/* ── Center nav links ── */
+.fikra-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+}
+
+.fikra-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    white-space: nowrap;
+    transition: color 0.15s, background 0.15s;
+    letter-spacing: 0.01em;
+}
+
+.fikra-nav-link svg {
+    opacity: 0.6;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+}
+
+.fikra-nav-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.fikra-nav-link:hover svg {
+    opacity: 1;
+}
+
+.fikra-nav-link.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    font-weight: 700;
+}
+
+.fikra-nav-link.active svg {
+    opacity: 1;
+}
+
+/* ── Right side controls ── */
+.fikra-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 16px;
+}
+
+/* Small portal/action buttons */
+.fikra-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.fikra-nav-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.fikra-nav-btn.org-btn:hover {
+    color: #00D2FF;
+    border-color: rgba(0, 210, 255, 0.3);
+    background: rgba(0, 210, 255, 0.06);
+}
+
+.fikra-nav-btn.admin-btn:hover {
+    color: #FF6B6B;
+    border-color: rgba(255, 59, 59, 0.3);
+    background: rgba(255, 59, 59, 0.06);
+}
+
+.fikra-nav-btn.back-btn {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.fikra-nav-btn.back-btn:hover {
+    color: #ffffff;
+}
+
+.fikra-nav-btn.drop-btn {
+    background: var(--tac-amber);
+    color: #000;
+    border-color: transparent;
+    padding: 8px 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.fikra-nav-btn.drop-btn:hover {
+    background: #fff;
+    color: #000;
+    border-color: transparent;
+}
+
+/* ── Profile button ── */
+.fikra-nav-profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px 5px 5px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.fikra-nav-profile:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.fikra-nav-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--tac-amber);
+    color: #000;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.fikra-nav-profile-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.fikra-nav-chevron {
+    opacity: 0.35;
+    flex-shrink: 0;
+}
+
+/* ── Body offset (pages that use this nav must add this to body or wrapper) ── */
+.fikra-nav-offset {
+    padding-top: 64px;
+}
+
+/* ── Responsive ── */
+/* ── Global Live Ticker ── */
+.global-live-ticker {
+    background: #7B2FFF;
+    color: #fff;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 8500;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.ticker-content {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker-slide 30s linear infinite;
+}
+
+.ticker-item {
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.ticker-dot {
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    display: inline-block;
+}
+
+@keyframes ticker-slide {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ── Global Pulse ── */
+.pulse-dot-global {
+    width: 8px;
+    height: 8px;
+    background: #00FF95;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    position: relative;
+}
+
+.pulse-dot-global::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: 50%;
+    animation: global-pulse 2s ease-out infinite;
+}
+
+@keyframes global-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* ── Adjust nav offset for ticker ── */
+.fikra-nav-offset {
+    padding-top: 92px;
+    /* 64px (nav) + 28px (ticker) */
+}
+
+@media (max-width: 768px) {
+    .fikra-nav-inner {
+        padding: 0 16px;
+    }
+
+    .fikra-nav-links {
+        display: none;
+    }
+
+    .fikra-nav-divider {
+        display: none;
+    }
+
+    .fikra-nav-badge {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .fikra-nav-btn span {
+        display: none;
+    }
+
+    .fikra-nav-profile-name {
+        display: none;
+    }
+}

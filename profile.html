@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="FIKRA Ã¢â‚¬â€ Your Identity and Idea History." />
+<title>FIKRA Ã¢â‚¬â€ Profile</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="shared-nav.css" />
+<link rel="stylesheet" href="tactical-dash.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body class="fikra-nav-offset">
+<canvas id="bg-canvas">
+</canvas>
+<nav class="fikra-nav">
+<div class="fikra-nav-inner">
+<a href="index.html" class="fikra-nav-logo">
+<span class="fikra-logo-text">FIKRA</span>
+<span class="fikra-logo-dot">.</span>
+</a>
+<div class="fikra-nav-divider">
+</div>
+<div class="fikra-nav-links">
+<a href="index.html" class="fikra-nav-link" id="snl-feed">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<line x1="8" y1="6" x2="21" y2="6" />
+<line x1="8" y1="12" x2="21" y2="12" />
+<line x1="8" y1="18" x2="21" y2="18" />
+<line x1="3" y1="6" x2="3.01" y2="6" />
+<line x1="3" y1="12" x2="3.01" y2="12" />
+<line x1="3" y1="18" x2="3.01" y2="18" />
+</svg>Feed </a>
+<a href="drop.html" class="fikra-nav-link" id="snl-drop">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="10" />
+<line x1="12" y1="8" x2="12" y2="16" />
+<line x1="8" y1="12" x2="16" y2="12" />
+</svg>Drop Idea </a>
+<a href="profile.html" class="fikra-nav-link active" id="snl-profile">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+<circle cx="12" cy="7" r="4" />
+</svg>Profile </a>
+<a href="dashboard.html" class="fikra-nav-link" id="snl-dashboard">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="3" y="3" width="7" height="7" rx="1" />
+<rect x="14" y="3" width="7" height="7" rx="1" />
+<rect x="3" y="14" width="7" height="7" rx="1" />
+<rect x="14" y="14" width="7" height="7" rx="1" />
+</svg>My Intel </a>
+</div>
+<div class="fikra-nav-right">
+<button id="theme-toggle" class="fikra-nav-btn" onclick="toggleTheme()" style="margin-right:8px; width:36px; padding:0; justify-content:center;">Ã°Å¸Å’â„¢</button>
+<a href="org-dashboard.html" class="fikra-nav-btn org-btn">Org Portal</a>
+<a href="admin-dashboard.html" class="fikra-nav-btn admin-btn">Admin</a>
+</div>
+</div>
+</nav>
+<div id="app" class="app-container site-layout">
+<div class="site-main-content">
+<section id="profile-screen" class="screen site-screen profile-root active" style="opacity: 1;">
+<div class="ps-cover">
+<div class="ps-cover-particles">
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+</div>
+<div class="ps-cover-wordmark">FIKRA</div>
+</div>
+<div class="ps-header">
+<div class="ps-avatar-wrapper">
+<div class="ps-avatar-lg" id="ps-avatar-lg" onclick="openEditProfileModal()">Z</div>
+<div class="ps-online-dot" title="Active">
+</div>
+</div>
+<div class="ps-info">
+<div class="ps-name-row">
+<h1 id="ps-name-disp">Zaid Al-Harbi</h1>
+<div class="ps-verified" title="Verified Thinker">
+<svg viewBox="0 0 24 24" fill="none" stroke="var(--tac-amber)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<polyline points="20 6 9 17 4 12" />
+</svg>
+</div>
+</div>
+<div id="ps-handle-disp">@zaid_creates</div>
+<div class="ps-meta">
+<span id="ps-city-disp">Ã°Å¸â€œÂ Riyadh</span>
+<span class="ps-divider">Ã‚Â·</span>
+<span id="ps-join-date">ACTIVATED: 2024.0.1</span>
+<span class="ps-divider">Ã‚Â·</span>
+<span id="ps-rank-label">Ã¢Å¡Â¡ STATUS: Igniter</span>
+</div>
+</div>
+<div class="ps-actions">
+<button class="ps-btn ps-btn-primary" onclick="openEditProfileModal()">Edit Profile</button>
+<button class="ps-btn ps-btn-secondary" onclick="shareProfile()">Ã¢â€ â€” Share</button>
+</div>
+</div>
+<p class="ps-bio" id="ps-bio-text">Unfiltered. Original. Building the future one fikra at a time.</p>
+<div class="ps-stats-grid">
+<div class="ps-stat">
+<span class="ps-stat-icon">Ã°Å¸â€™Â¡</span>
+<span class="ps-stat-val" id="ps-stat-drops">0</span>
+<span class="ps-stat-lbl">FIKRAS</span>
+</div>
+<div class="ps-stat">
+<span class="ps-stat-icon">Ã°Å¸â€Â</span>
+<span class="ps-stat-val" id="ps-stat-remixes">0</span>
+<span class="ps-stat-lbl">REMIXES</span>
+</div>
+<div class="ps-stat">
+<span class="ps-stat-icon">Ã¢Å¡Â¡</span>
+<span class="ps-stat-val" id="ps-stat-energy">0</span>
+<span class="ps-stat-lbl">ENERGY</span>
+</div>
+<div class="ps-stat">
+<span class="ps-stat-icon">Ã°Å¸â€Â¥</span>
+<span class="ps-stat-val" id="ps-stat-impact">Rising</span>
+<span class="ps-stat-lbl">IMPACT</span>
+</div>
+</div>
+<div class="ps-achievements" id="ps-achievements">
+<div class="ps-badge">
+<span class="ps-badge-icon">Ã°Å¸Â§Â </span>First Fikra</div>
+<div class="ps-badge">
+<span class="ps-badge-icon">Ã¢Å¡Â¡</span>Energy Surge</div>
+<div class="ps-badge">
+<span class="ps-badge-icon">Ã°Å¸Å’Â</span>Global Reach</div>
+<div class="ps-badge">
+<span class="ps-badge-icon">Ã°Å¸â€Â</span>Remix King</div>
+<div class="ps-badge">
+<span class="ps-badge-icon">Ã°Å¸Å’Å¸</span>Top Picker</div>
+</div>
+<div class="ps-activity-section">
+<div class="ps-section-title">Activity Pulse Ã¢â‚¬â€ Last 52 Weeks</div>
+<div class="ps-activity-grid" id="ps-activity-grid">
+</div>
+</div>
+<div class="ps-tabs" id="ps-tabs">
+<button class="ps-tab active" data-panel="ps-panel-drops" onclick="switchProfileTab(this)">My Drops</button>
+<button class="ps-tab" data-panel="ps-panel-saved" onclick="switchProfileTab(this)">Saved</button>
+<button class="ps-tab" data-panel="ps-panel-remixes" onclick="switchProfileTab(this)">Remixes</button>
+</div>
+<div class="ps-panel active" id="ps-panel-drops">
+<div class="ps-grid" id="ps-recent-drops">
+</div>
+</div>
+<div class="ps-panel" id="ps-panel-saved">
+<div class="ps-empty">
+<span class="ps-empty-icon">Ã°Å¸â€â€“</span>
+<p>Ideas you save will appear here.</p>
+<button class="ps-empty-cta" href="index.html">Browse Feed</button>
+</div>
+</div>
+<div class="ps-panel" id="ps-panel-remixes">
+<div class="ps-grid" id="ps-remix-drops">
+</div>
+</div>
+</section>
+</div>
+</div>
+<div class="modal-backdrop" id="profile-modal-bg" onclick="onProfileBgClick(event)">
+<div class="modal-content">
+<div class="modal-header">
+<h2>Edit Identity</h2>
+<button class="modal-close" onclick="closeProfileModal()">Ã¢Å“â€¢</button>
+</div>
+<div class="modal-body">
+<div class="avatar-edit-section">
+<div class="pm-avatar" id="pm-avatar">Z</div>
+<div class="color-picker">
+<button class="avatar-color-swatch active" style="background:#7B2FFF" onclick="setAvatarColor(this,'#7B2FFF')">
+</button>
+<button class="avatar-color-swatch" style="background:#00D2FF" onclick="setAvatarColor(this,'#00D2FF')">
+</button>
+<button class="avatar-color-swatch" style="background:#FFD700" onclick="setAvatarColor(this,'#FFD700')">
+</button>
+<button class="avatar-color-swatch" style="background:#FF3B3B" onclick="setAvatarColor(this,'#FF3B3B')">
+</button>
+<button class="avatar-color-swatch" style="background:#00C97E" onclick="setAvatarColor(this,'#00C97E')">
+</button>
+<button class="avatar-color-swatch" style="background:#FF8C00" onclick="setAvatarColor(this,'#FF8C00')">
+</button>
+</div>
+</div>
+<div class="form-group">
+<label>Display Name</label>
+<input type="text" id="pm-full-name" placeholder="Full Name">
+</div>
+<div class="form-group">
+<label>Handle</label>
+<input type="text" id="pm-handle" placeholder="@username">
+</div>
+<div class="form-group">
+<label>Home City</label>
+<input type="text" id="pm-city" placeholder="e.g. Riyadh">
+</div>
+<div class="form-group">
+<label>Bio</label>
+<textarea id="pm-bio" placeholder="Tell the network who you are...">
+</textarea>
+</div>
+</div>
+<div class="modal-footer">
+<button class="modal-btn-cancel" onclick="closeProfileModal()">Cancel</button>
+<button class="modal-btn-save" onclick="saveProfile()">Save Identity</button>
+</div>
+</div>
+</div>
+<div id="toast" class="toast">
+</div>
+<script src="app.js">
+</script>
+</body>
+</html>

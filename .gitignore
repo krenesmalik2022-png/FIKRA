@@ -1,0 +1,13 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Workspace artifacts
+.antigravity/
+.gemini/
+brain/
+*.log
+
+# Scripts
+*.ps1
+final_fix.ps1

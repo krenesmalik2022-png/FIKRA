@@ -1,0 +1,352 @@
+﻿/* ═══════════════════════════════════════════════════
+   TACTICAL COMMAND CENTER — Mission Board Style
+   Vibe: Soldier's Field Computer / Mission Ops
+═══════════════════════════════════════════════════ */
+
+:root {
+    --tac-amber: #FFB000;
+    --tac-amber-dim: rgba(255, 176, 0, 0.4);
+    --tac-red: #FF3B3B;
+    --tac-blue: #00D2FF;
+    --tac-bg: #05080A;
+    --tac-border: rgba(255, 176, 0, 0.15);
+}
+
+.dashboard-root {
+    background: var(--tac-bg) !important;
+    font-family: 'Space Grotesk', 'Space Grotesk', sans-serif !important;
+    color: var(--tac-amber) !important;
+}
+
+/* ── HUD STYLES ── */
+.dashboard-root::before {
+    background-image:
+        linear-gradient(var(--tac-amber-dim) 0.5px, transparent 0.5px),
+        linear-gradient(90deg, var(--tac-amber-dim) 0.5px, transparent 0.5px) !important;
+    background-size: 40px 40px !important;
+    opacity: 0.15 !important;
+}
+
+/* Tactical Brackets */
+.di-section-title {
+    color: var(--tac-amber) !important;
+    font-family: sans-serif;
+    letter-spacing: 0.1em;
+}
+
+.di-section-title::before {
+    content: '[ ';
+}
+
+.di-section-title::after {
+    content: ' ]';
+    background: none !important;
+}
+
+/* ── HERO OVERHAUL ── */
+.di-hero {
+    background: linear-gradient(180deg, rgba(255, 176, 0, 0.05) 0%, transparent 100%) !important;
+    border-bottom: 2px solid var(--tac-amber) !important;
+    padding: 30px 40px !important;
+}
+
+.di-title {
+    color: #fff !important;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+.di-title span {
+    background: none !important;
+    -webkit-text-fill-color: var(--tac-amber) !important;
+    border: 1px solid var(--tac-amber);
+    padding: 2px 10px;
+    font-style: normal;
+}
+
+/* ── KPI TILES ── */
+.di-kpi {
+    border-right: 1px solid var(--tac-border) !important;
+    background: rgba(255, 176, 0, 0.02) !important;
+}
+
+.di-kpi-val {
+    font-family: sans-serif;
+    color: var(--tac-amber) !important;
+    text-shadow: 0 0 10px var(--tac-amber-dim);
+}
+
+.di-kpi-label {
+    color: var(--tac-amber-dim) !important;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+/* ── TOP IDEAS -> ACTIVE OPERATIONS ── */
+.di-idea-row {
+    background: rgba(255, 176, 0, 0.03) !important;
+    border: 1px solid var(--tac-border) !important;
+    border-radius: 0 !important;
+}
+
+.di-idea-row::before {
+    background: var(--tac-amber) !important;
+    width: 4px !important;
+}
+
+.di-idea-rank {
+    color: var(--tac-amber) !important;
+    opacity: 0.8;
+}
+
+.di-idea-tag {
+    border: 1px solid var(--tac-amber) !important;
+    background: none !important;
+    color: var(--tac-amber) !important;
+    border-radius: 2px !important;
+    font-size: 8px !important;
+}
+
+/* ── GLOBE -> TACTICAL MAP ── */
+.di-globe-canvas {
+    background: radial-gradient(circle, rgba(255, 176, 0, 0.1), transparent) !important;
+    border: 1px dashed var(--tac-amber) !important;
+}
+
+.di-globe-node {
+    background: var(--tac-amber) !important;
+    box-shadow: 0 0 15px var(--tac-amber) !important;
+    width: 4px !important;
+    height: 4px !important;
+}
+
+/* ── CLASSIFIED WATERMARK ── */
+.dashboard-root::after {
+    content: 'CLASSIFIED // TACTICAL INTEL' !important;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    opacity: 0.1 !important;
+    pointer-events: none;
+    background: none !important;
+    color: var(--tac-amber);
+    z-index: 10001;
+}
+
+/* ── VIBE METER -> MISSION READINESS ── */
+.di-vibe-label {
+    color: var(--tac-amber) !important;
+    font-family: sans-serif;
+}
+
+#di-vibe-arc {
+    stroke: var(--tac-amber) !important;
+}
+
+/* ── LIVE FEED -> INTEL LOGS ── */
+.di-event {
+    border-left: 2px solid var(--tac-amber) !important;
+    background: rgba(255, 176, 0, 0.02) !important;
+    border-radius: 0 !important;
+}
+
+.di-event-msg {
+    font-family: sans-serif;
+    color: rgba(255, 176, 0, 0.8) !important;
+}
+
+/* ── RANK CARD -> SECURITY CLEARANCE ── */
+.di-rank-card {
+    border: 1px solid var(--tac-amber) !important;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 176, 0, 0.02) 10px, rgba(255, 176, 0, 0.02) 20px) !important;
+}
+
+.di-rank-prog-fill {
+    background: var(--tac-amber) !important;
+}
+
+/* SCANLINE FX */
+@keyframes tacScan {
+    from {
+        top: -100%;
+    }
+
+    to {
+        top: 100%;
+    }
+}
+
+.dashboard-root .scanline-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 176, 0, 0.05);
+    animation: tacScan 4s linear infinite;
+    z-index: 10002;
+}
+
+/* Scrollbar */
+.di-live-feed::-webkit-scrollbar {
+    width: 4px;
+}
+
+.di-live-feed::-webkit-scrollbar-thumb {
+    background: var(--tac-amber);
+}
+
+/* ── MISSION CARD ── */
+.di-mission-card {
+    background: rgba(255, 176, 0, 0.05);
+    border: 2px solid var(--tac-amber);
+    margin-top: 24px;
+    padding: 24px;
+    position: relative;
+    border-radius: 0;
+    box-shadow: inset 0 0 20px rgba(255, 176, 0, 0.05);
+}
+
+.dmc-header {
+    font-size: 10px;
+    font-weight: 900;
+    color: #000;
+    background: var(--tac-amber);
+    display: inline-block;
+    padding: 3px 10px;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+#mission-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+#mission-desc {
+    font-size: 13px;
+    color: var(--tac-amber-dim);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+}
+
+.dmc-progress-wrap {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 12px;
+    border: 1px solid var(--tac-border);
+}
+
+.dmc-bar {
+    height: 10px;
+    background: rgba(255, 176, 0, 0.1);
+    margin-top: 8px;
+    border: 1px solid rgba(255, 176, 0, 0.2);
+}
+
+#mission-fill {
+    height: 100%;
+    background: var(--tac-amber);
+    box-shadow: 0 0 15px var(--tac-amber);
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── TACTICAL TERMINAL ── */
+.di-terminal {
+    background: #000;
+    border: 1px solid var(--tac-amber);
+    padding: 16px;
+    margin-top: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    box-shadow: 0 0 10px rgba(255, 176, 0, 0.1);
+}
+
+.term-header {
+    font-size: 10px;
+    color: var(--tac-amber-dim);
+    border-bottom: 1px solid var(--tac-border);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+.term-body {
+    height: 100px;
+    overflow-y: auto;
+    font-size: 11px;
+    color: #00FF41;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.term-line {
+    line-height: 1.2;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+}
+
+.term-input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid var(--tac-border);
+    padding-top: 12px;
+}
+
+#term-input {
+    background: transparent;
+    border: none;
+    color: #00FF41;
+    font-family: inherit;
+    font-size: 12px;
+    flex: 1;
+    outline: none;
+}
+
+/* ── GLITCH OVERLAY ── */
+.tac-glitch {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 176, 0, 0.03);
+    pointer-events: none;
+    z-index: 10005;
+    opacity: 0;
+}
+
+@keyframes glitchAnim {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0);
+    }
+
+    5% {
+        opacity: 0.5;
+        transform: translate(-3px, 3px);
+    }
+
+    10% {
+        opacity: 0.2;
+        transform: translate(3px, -3px);
+    }
+
+    15% {
+        opacity: 0.6;
+        filter: hue-rotate(90deg);
+    }
+
+    20% {
+        opacity: 0;
+        transform: translate(0, 0);
+    }
+}
+
+.tac-glitch.active {
+    animation: glitchAnim 0.4s steps(3) infinite;
+}
