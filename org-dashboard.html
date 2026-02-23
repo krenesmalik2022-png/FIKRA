@@ -1,565 +1,123 @@
-< !DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="FIKRA Organization Dashboard — Browse and pick youth ideas from around the globe." /><title>FIKRA — Global Organization Dashboard</title><link rel="icon" href="favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="shared-nav.css" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" /><style> :root {
-    --bg-primary: #000000;
-    --bg-card: rgba(20, 20, 20, 0.7);
-    --bg-surface: rgba(255, 255, 255, 0.05);
-    --purple-main: #9b59b6;
-    --purple-light: #BB8FCE;
-    --cyan-main: #00D2FF;
-    --gold-main: #FFB800;
-    --gradient-premium: linear-gradient(135deg, #8E44AD 0%, #3498DB 100%);
-    --text-primary: #FFFFFF;
-    --text-secondary: rgba(255, 255, 255, 0.7);
-    --text-muted: rgba(255, 255, 255, 0.4);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-    --radius-xl: 32px;
-    --radius-lg: 24px;
-    --radius-md: 16px;
-    --radius-sm: 8px;
-    --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    --sidebar-w: 280px;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: 'Space Grotesk', sans-serif;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    overflow-x: hidden;
-}
-
-/* -- Layout -- */
-.layout {
-    display: flex;
-    min-height: calc(100vh - 64px);
-}
-
-/* -- Sidebar -- */
-.sidebar {
-    width: var(--sidebar-w);
-    border-right: var(--glass-border);
-    padding: 30px;
-    position: sticky;
-    top: 64px;
-    height: calc(100vh - 64px);
-    background: rgba(5, 5, 5, 0.5);
-}
-
-.sidebar-search {
-    width: 100%;
-    background: var(--bg-surface);
-    border: var(--glass-border);
-    color: var(--text-primary);
-    padding: 12px 18px;
-    border-radius: var(--radius-md);
-    font-size: 14px;
-    margin-bottom: 30px;
-    outline: none;
-}
-
-.filter-block {
-    margin-bottom: 30px;
-}
-
-.filter-label {
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-}
-
-.filter-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.filter-item {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    text-align: left;
-    padding: 10px 14px;
-    border-radius: var(--radius-md);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.filter-item:hover {
-    background: var(--bg-surface);
-    color: var(--text-primary);
-}
-
-.filter-item.active {
-    background: var(--bg-surface);
-    color: var(--text-primary);
-    font-weight: 700;
-    box-shadow: inset 0 0 10px rgba(155, 89, 182, 0.1);
-}
-
-.filter-badge {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2px 8px;
-    border-radius: 6px;
-    font-size: 10px;
-    font-weight: 800;
-}
-
-/* -- Main -- */
-.main {
-    flex: 1;
-    padding: 40px;
-}
-
-.stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-bottom: 40px;
-}
-
-.stat-card {
-    background: var(--bg-card);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    border: var(--glass-border);
-    border-radius: var(--radius-xl);
-    padding: 24px;
-    transition: var(--transition-smooth);
-}
-
-.stat-icon-wrap {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius-md);
-    background: rgba(155, 89, 182, 0.1);
-    color: var(--purple-main);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-}
-
-.stat-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    margin-bottom: 4px;
-}
-
-.stat-value {
-    font-size: 32px;
-    font-weight: 800;
-    margin-bottom: 8px;
-}
-
-.stat-note {
-    font-size: 12px;
-    color: var(--text-muted);
-}
-
-.stat-note span {
-    color: var(--cyan-main);
-    font-weight: 700;
-}
-
-/* -- Org Banner -- */
-.org-banner {
-    background: linear-gradient(135deg, rgba(0, 210, 255, 0.1) 0%, rgba(155, 89, 182, 0.05) 100%);
-    border: 1px solid rgba(0, 210, 255, 0.2);
-    border-radius: var(--radius-xl);
-    padding: 30px;
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-    overflow: hidden;
-    position: relative;
-}
-
-.ob-content h2 {
-    font-size: 20px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    color: #fff;
-}
-
-.ob-content p {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    max-width: 500px;
-}
-
-.ob-stat-val {
-    font-size: 40px;
-    font-weight: 800;
-    color: var(--cyan-main);
-    line-height: 1;
-}
-
-.ob-stat-lbl {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-top: 5px;
-}
-
-.pool-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: var(--glass-border);
-}
-
-.pool-title {
-    font-size: 24px;
-    font-weight: 800;
-}
-
-.pool-count {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-top: 4px;
-}
-
-.pool-controls {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.select-sort {
-    background: var(--bg-surface);
-    border: var(--glass-border);
-    color: var(--text-primary);
-    padding: 8px 12px;
-    border-radius: var(--radius-sm);
-    font-size: 13px;
-    outline: none;
-}
-
-/* -- View Toggle -- */
-.view-toggle {
-    display: flex;
-    background: var(--bg-surface);
-    padding: 4px;
-    border-radius: 10px;
-    border: var(--glass-border);
-}
-
-.view-btn {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition-smooth);
-}
-
-.view-btn.active {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary);
-}
-
-.tag-strip {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-}
-
-.tag-pill {
-    background: rgba(255, 255, 255, 0.05);
-    border: var(--glass-border);
-    color: var(--text-secondary);
-    padding: 6px 14px;
-    border-radius: 99px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-}
-
-.tag-pill:hover,
-.tag-pill.active {
-    background: rgba(155, 89, 182, 0.1);
-    color: var(--purple-light);
-    border-color: rgba(155, 89, 182, 0.3);
-}
-
-/* -- Ideas Grid -- */
-.ideas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 24px;
-}
-
-.ideas-grid.list-view {
-    grid-template-columns: 1fr;
-}
-
-.card {
-    background: var(--bg-card);
-    border: var(--glass-border);
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    position: relative;
-    transition: var(--transition-smooth);
-    cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-}
-
-.card.picked-state::after {
-    content: 'PICKED';
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: var(--gold-main);
-    color: #000;
-    font-size: 9px;
-    font-weight: 900;
-    padding: 2px 6px;
-    border-radius: 4px;
-}
-
-.card-tag {
-    font-size: 10px;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--purple-light);
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-}
-
-.card-idea {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.5;
-    margin-bottom: 24px;
-    flex: 1;
-}
-
-.card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.card-user {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.u-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--gradient-premium);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 800;
-}
-
-.u-name {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.u-loc {
-    display: block;
-    font-size: 11px;
-    color: var(--text-muted);
-}
-
-.card-actions {
-    display: flex;
-    gap: 8px;
-}
-
-.btn-card {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    border: var(--glass-border);
-    background: var(--bg-surface);
-    color: var(--text-secondary);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition-smooth);
-}
-
-.btn-card:hover {
-    color: var(--text-primary);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-.btn-card.btn-save.active {
-    background: var(--purple-main);
-    color: #fff;
-    border: none;
-}
-
-.btn-card.btn-pick {
-    background: var(--gold-main);
-    color: #000;
-    border: none;
-}
-
-/* -- Modal -- */
-.modal-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: var(--transition-smooth);
-}
-
-.modal-bg.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.modal {
-    background: #111;
-    border: var(--glass-border);
-    width: 100%;
-    max-width: 480px;
-    padding: 40px;
-    border-radius: var(--radius-xl);
-    transform: scale(0.9);
-    transition: var(--transition-smooth);
-}
-
-.modal-bg.active .modal {
-    transform: scale(1);
-}
-
-.modal-title {
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 12px;
-}
-
-.modal-desc {
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 24px;
-}
-
-.modal-preview {
-    background: var(--bg-surface);
-    padding: 20px;
-    border-radius: var(--radius-md);
-    font-style: italic;
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 30px;
-}
-
-.modal-actions {
-    display: flex;
-    gap: 12px;
-}
-
-.modal-confirm,
-.modal-cancel {
-    flex: 1;
-    padding: 14px;
-    border-radius: var(--radius-md);
-    font-weight: 700;
-    cursor: pointer;
-    border: none;
-    transition: var(--transition-smooth);
-}
-
-.modal-confirm {
-    background: var(--gold-main);
-    color: #000;
-}
-
-.modal-cancel {
-    background: var(--bg-surface);
-    color: var(--text-primary);
-    border: var(--glass-border);
-}
-
-/* -- Toast -- */
-.toast {
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: var(--purple-main);
-    color: #fff;
-    padding: 14px 28px;
-    border-radius: 99px;
-    font-size: 14px;
-    font-weight: 600;
-    opacity: 0;
-    pointer-events: none;
-    transition: var(--transition-smooth);
-    z-index: 3000;
-}
-
-.toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-</style></head><body class="fikra-nav-offset">< !-- Global Live Ticker --><div class="global-live-ticker"><div class="ticker-content"><span class="ticker-item"><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM TOKYO</span><span class="ticker-item"><span class="ticker-dot"></span>NEURAL SYNC ACTIVE: 1.2K THINKERS ONLINE</span><span class="ticker-item"><span class="ticker-dot"></span>REMIX SIGNAL DETECTED IN LONDON</span><span class="ticker-item"><span class="ticker-dot"></span>BROADCASTING GLOBAL INTELLIGENCE 24/7</span><span class="ticker-item"><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM NEW YORK</span></div></div><nav class="fikra-nav"><div class="fikra-nav-inner"><a href="index.html" class="fikra-nav-logo"><span class="fikra-logo-text">FIKRA</span><span class="fikra-logo-dot">.</span></a><div class="fikra-nav-divider"></div><div class="fikra-nav-badge org">Org Dashboard</div><div class="fikra-nav-links"><a href="index.html" class="fikra-nav-link" id="snl-feed">Feed</a><a href="profile.html" class="fikra-nav-link" id="snl-profile">Profile</a><a href="dashboard.html" class="fikra-nav-link" id="snl-dashboard">My Intel</a><a href="admin-dashboard.html" class="fikra-nav-link">Admin</a></div><div class="fikra-nav-right"><span style="font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); margin-right: 12px;">Global Youth Foundation</span><button class="fikra-nav-btn" onclick="exportReport()" title="Export Report"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>Export </button><a href="index.html" class="fikra-nav-btn back-btn">← Back</a></div></div></nav><div class="layout"><aside class="sidebar"><input class="sidebar-search" id="search-input" type="text" placeholder="Search ideas..." autocomplete="off" oninput="applyFilters()" /><div class="filter-block"><div class="filter-label">Sort By</div><div class="filter-list"><button class="filter-item active" data-sort="recent" onclick="setSort(this,'recent')">Most Recent <span class="filter-badge" id="badge-total">0</span></button><button class="filter-item" data-sort="remixes" onclick="setSort(this,'remixes')">Most Remixed</button><button class="filter-item" data-sort="saved" onclick="setSort(this,'saved')">Saved <span class="filter-badge" id="badge-saved">0</span></button><button class="filter-item" data-sort="picked" onclick="setSort(this,'picked')">Picked <span class="filter-badge" id="badge-picked">0</span></button></div></div><div class="filter-block"><div class="filter-label">Location (Global)</div><div class="filter-list" id="city-list"></div></div><div class="filter-block"><div class="filter-label">Theme</div><div class="filter-list" id="theme-list"></div></div><div class="filter-block"><div class="filter-label">Age Group</div><div class="filter-list"><button class="filter-item active" data-age="all" onclick="setAge(this,'all')">All Ages</button><button class="filter-item" data-age="15-17" onclick="setAge(this,'15-17')">15 - 17</button><button class="filter-item" data-age="18-21" onclick="setAge(this,'18-21')">18 - 21</button><button class="filter-item" data-age="22-25" onclick="setAge(this,'22-25')">22 - 25</button></div></div></aside><main class="main"><div class="org-banner"><div class="ob-content"><h2>Empowering the Next Generation</h2><p>Discover raw talent and unfiltered ideas from young visionaries worldwide. Pick the most promising fikras to collaborate,
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description"
+content="FIKRA Organization Dashboard — Browse and pick youth ideas from around the globe."
+/><title>FIKRA — Global Organization Dashboard</title><link rel="icon" href="favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="shared-nav.css" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet"
+/><link rel="stylesheet" href="org-dashboard.css" /></head><body class="fikra-nav-offset"><!-- Global Live Ticker --><div class="global-live-ticker"><div class="ticker-content"><span class="ticker-item"
+><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM TOKYO</span><span class="ticker-item"
+><span class="ticker-dot"></span>NEURAL SYNC ACTIVE: 1.2K THINKERS ONLINE</span><span class="ticker-item"
+><span class="ticker-dot"></span>REMIX SIGNAL DETECTED IN LONDON</span><span class="ticker-item"
+><span class="ticker-dot"></span>BROADCASTING GLOBAL INTELLIGENCE 24/7</span><span class="ticker-item"
+><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM NEW YORK</span></div></div><nav class="fikra-nav"><div class="fikra-nav-inner"><a href="index.html" class="fikra-nav-logo"
+><span class="fikra-logo-text">FIKRA</span><span class="fikra-logo-dot">.</span></a><div class="fikra-nav-divider"></div><div class="fikra-nav-badge org">Org Dashboard</div><div class="fikra-nav-links"><a href="index.html" class="fikra-nav-link" id="snl-feed">Feed</a><a href="profile.html" class="fikra-nav-link" id="snl-profile"
+>Profile</a><a href="dashboard.html" class="fikra-nav-link" id="snl-dashboard"
+>My Intel</a><a href="admin-dashboard.html" class="fikra-nav-link">Admin</a></div><div class="fikra-nav-right"><span style="
+ font-size: 13px;
+font-weight: 600;
+color: rgba(255, 255, 255, 0.6);
+margin-right: 12px;
+"
+>Global Youth Foundation</span><button class="fikra-nav-btn"
+onclick="exportReport()"
+title="Export Report"
+><svg width="14"
+height="14"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"
+stroke-linejoin="round"
+><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>Export</button><a href="index.html" class="fikra-nav-btn back-btn">← Back</a></div></div></nav><div class="layout"><aside class="sidebar"><input class="sidebar-search"
+id="search-input"
+type="text"
+placeholder="Search ideas..."
+autocomplete="off"
+oninput="applyFilters()"
+/><div class="filter-block"><div class="filter-label">Sort By</div><div class="filter-list"><button class="filter-item active"
+data-sort="recent"
+onclick="setSort(this, 'recent')"
+>Most Recent <span class="filter-badge" id="badge-total">0</span></button><button class="filter-item"
+data-sort="remixes"
+onclick="setSort(this, 'remixes')"
+>Most Remixed</button><button class="filter-item"
+data-sort="saved"
+onclick="setSort(this, 'saved')"
+>Saved <span class="filter-badge" id="badge-saved">0</span></button><button class="filter-item"
+data-sort="picked"
+onclick="setSort(this, 'picked')"
+>Picked <span class="filter-badge" id="badge-picked">0</span></button></div></div><div class="filter-block"><div class="filter-label">Location (Global)</div><div class="filter-list" id="city-list"></div></div><div class="filter-block"><div class="filter-label">Theme</div><div class="filter-list" id="theme-list"></div></div><div class="filter-block"><div class="filter-label">Age Group</div><div class="filter-list"><button class="filter-item active"
+data-age="all"
+onclick="setAge(this, 'all')"
+>All Ages</button><button class="filter-item"
+data-age="15-17"
+onclick="setAge(this, '15-17')"
+>15 - 17</button><button class="filter-item"
+data-age="18-21"
+onclick="setAge(this, '18-21')"
+>18 - 21</button><button class="filter-item"
+data-age="22-25"
+onclick="setAge(this, '22-25')"
+>22 - 25 </button></div></div></aside><main class="main"><div class="org-banner"><div class="ob-content"><h2>Empowering the Next Generation</h2><p>Discover raw talent and unfiltered ideas from young visionaries worldwide. Pick the most promising fikras to collaborate,
 mentor,
-or sponsor their journey.</p></div><div class="ob-stat"><div class="ob-stat-val">24</div><div class="ob-stat-lbl">Global Ideas<br>Pending</div></div></div><div class="stats-row"><div class="stat-card"><div class="stat-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg></div><div class="stat-label">Total Ideas</div><div class="stat-value" id="stat-total">0</div><div class="stat-note"><span>+42</span>this week</div></div><div class="stat-card"><div class="stat-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg></div><div class="stat-label">Views</div><div class="stat-value" id="stat-browsed">0</div><div class="stat-note">in this session</div></div><div class="stat-card"><div class="stat-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg></div><div class="stat-label">Network Reach</div><div class="stat-value" id="stat-youth">0</div><div class="stat-note">across <span>Worldwide</span></div></div></div><div class="pool-header"><div><div class="pool-title">Global Idea Pool</div><div class="pool-count" id="pool-count"></div></div><div class="pool-controls"><select class="select-sort" id="sort-select" title="Sort ideas" aria-label="Sort ideas" onchange="applyFilters()"><option value="recent">Most Recent</option><option value="remixes">Most Remixed</option><option value="energy">Highest Energy</option></select><div class="view-toggle"><button class="view-btn active" id="btn-grid" onclick="setView('grid')" aria-label="Grid view" title="Grid view"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg></button><button class="view-btn" id="btn-list" onclick="setView('list')" aria-label="List view" title="List view"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></svg></button></div></div></div><div class="tag-strip" id="tag-strip"></div><div id="ideas-grid" class="ideas-grid"></div></main></div><div class="modal-bg" id="modal-bg" onclick="onBgClick(event)"><div class="modal"><h2 class="modal-title">Pick This Idea?</h2><p class="modal-desc">You are selecting this idea for your organization's programme. The creator will be notified.</p>
- <script>const IDEAS=[ {
+or sponsor their journey. </p></div><div class="ob-stat"><div class="ob-stat-val">24</div><div class="ob-stat-lbl">Global Ideas<br />Pending</div></div></div><div class="stats-row"><div class="stat-card"><div class="stat-icon-wrap"><svg width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"
+stroke-linejoin="round"
+><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+/></svg></div><div class="stat-label">Total Ideas</div><div class="stat-value" id="stat-total">0</div><div class="stat-note"><span>+42</span>this week</div></div><div class="stat-card"><div class="stat-icon-wrap"><svg width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"
+stroke-linejoin="round"
+><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg></div><div class="stat-label">Views</div><div class="stat-value" id="stat-browsed">0</div><div class="stat-note">in this session</div></div><div class="stat-card"><div class="stat-icon-wrap"><svg width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"
+stroke-linejoin="round"
+><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg></div><div class="stat-label">Network Reach</div><div class="stat-value" id="stat-youth">0</div><div class="stat-note">across <span>Worldwide</span></div></div></div><div class="pool-header"><div><div class="pool-title">Global Idea Pool</div><div class="pool-count" id="pool-count"></div></div><div class="pool-controls"><select class="select-sort"
+id="sort-select"
+title="Sort ideas"
+aria-label="Sort ideas"
+onchange="applyFilters()"
+><option value="recent">Most Recent</option><option value="remixes">Most Remixed</option><option value="energy">Highest Energy</option></select><div class="view-toggle"><button class="view-btn active"
+id="btn-grid"
+onclick="setView('grid')"
+aria-label="Grid view"
+title="Grid view"
+><svg width="18"
+height="18"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"
+stroke-linejoin="round"
+><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg></button><button class="view-btn"
+id="btn-list"
+onclick="setView('list')"
+aria-label="List view"
+title="List view"
+><svg width="18"
+height="18"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2.5"
+stroke-linecap="round"
+stroke-linejoin="round"
+
+><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></svg></button></div></div></div><div class="tag-strip" id="tag-strip"></div><div id="ideas-grid" class="ideas-grid"></div></main></div><div class="modal-bg" id="modal-bg" onclick="onBgClick(event)"><div class="modal"><h2 class="modal-title">Pick This Idea?</h2><p class="modal-desc">You are selecting this idea for your organization's programme. The
+ creator will be notified. </p><div class="modal-preview" id="modal-preview"></div><div class="modal-actions"><button class="modal-cancel" onclick="closeModal()">Cancel</button><button class="modal-confirm" onclick="confirmPick()">Pick Idea </button></div></div></div><script>const IDEAS=[ {
     id: 1, idea: "Build a youth entrepreneurship hub that runs on solar power and trains local communities in digital skills.", name: "Alex Chen", city: "Singapore", age: "18-21", tag: "Tech", remixes: 142, energy: 9800
 }
 
@@ -583,17 +141,73 @@ id: 4, idea: "Decentralized logistics for rural agriculture co-ops using blockch
 id: 5, idea: "Mental health check-ins disguised as daily mood playlists, auto-generated from your listening.", name: "Sara Haddad", city: "Casablanca", age: "18-21", tag: "Wellness", remixes: 415, energy: 21000
 }
 
+,
+{
+id: 6, idea: "Open-source robotics kits for underprivileged schools, driven by AI tutors.", name: "Raj Patel", city: "Mumbai", age: "18-21", tag: "Tech", remixes: 280, energy: 14500
+}
+
+,
+{
+id: 7, idea: "Urban vertical farming pods retrofitted into abandoned shipping containers.", name: "Chloe Smith", city: "London", age: "22-25", tag: "Eco", remixes: 95, energy: 7200
+}
+
+,
+{
+id: 8, idea: "A global youth parliament voting protocol via secure decentralized nodes.", name: "Kwame Osei", city: "Accra", age: "18-21", tag: "Governance", remixes: 512, energy: 25000
+}
+
+,
+{
+id: 9,
+    idea: "Ocean plastic upcycling into modular bricks for low-cost emergency housing.", name: "Maria Garcia", city: "Lima", age: "22-25", tag: "Eco", remixes: 120, energy: 8900
+}
+
+,
+{
+id: 10, idea: "Augmented Reality street art that tells the forgotten history of local neighborhoods.", name: "Tariq Zayn", city: "Amman", age: "15-17", tag: "Art", remixes: 340, energy: 18000
+}
+
+,
+{
+id: 11, idea: "Gamified micro-investing platform for teens to collectively fund local green projects.", name: "Ji-Yoon Kim", city: "Seoul", age: "18-21", tag: "Finance", remixes: 210, energy: 11500
+}
+
+,
+{
+id: 12, idea: "Haptic feedback gloves for remote sign-language translation and learning.", name: "David Okafor", city: "Lagos", age: "22-25", tag: "Tech", remixes: 405, energy: 22000
+}
+
+,
+{
+id: 13, idea: "Nomadic wind-turbine backpacks that charge devices for remote communities.", name: "Isabella Silva", city: "Rio de Janeiro", age: "15-17", tag: "Eco", remixes: 175, energy: 9300
+}
+
+,
+{
+id: 14, idea: "Hyper-local mesh networks to ensure internet access during extreme weather events.", name: "Samuel Lee", city: "Toronto", age: "22-25", tag: "Infrastructure", remixes: 150, energy: 8100
+}
+
+,
+{
+id: 15, idea: "A platform exchanging volunteer hours for access to premium educational courses.", name: "Aisha Khan", city: "Karachi", age: "18-21", tag: "Education", remixes: 290, energy: 13400
+}
+
 ];
 
 let activeFilters= {
-    sort: 'recent', city: 'all', theme: 'all', age: 'all', query: ''
+    sort: "recent",
+        city: "all",
+        theme: "all",
+        age: "all",
+        query: "",
 }
 
 ;
+
 let savedIds=new Set();
 let pickedIds=new Set();
 let browsingStats=0;
-let activeView='grid';
+let activeView="grid";
 let pendingPickId=null;
 
 window.onload=()=> {
@@ -604,135 +218,142 @@ window.onload=()=> {
 ;
 
 function initFilters() {
-    const cities=['all',
-    ...new Set(IDEAS.map(i=> i.city))];
-    const cityList=document.getElementById('city-list');
+    const cities=["all",
+    ...new Set(IDEAS.map((i)=> i.city))];
+    const cityList=document.getElementById("city-list");
 
-    cityList.innerHTML=cities.map(c=> `<button class="filter-item ${c === 'all' ? 'active' : ''}" onclick="setCity(this,'${c}')" >$ {
+    cityList.innerHTML=cities .map((c,
+        )=> `<button class="filter-item ${c === " all" ? " active" : " "}" onclick="setCity(this,'${c}')" >${
             c.charAt(0).toUpperCase() + c.slice(1)
         }
 
-        </button>`).join('');
+        </button>`,
+    ) .join("");
 
-    const themes=['all',
-    ...new Set(IDEAS.map(i=> i.tag))];
-    const themeList=document.getElementById('theme-list');
+    const themes=["all",
+    ...new Set(IDEAS.map((i)=> i.tag))];
+    const themeList=document.getElementById("theme-list");
 
-    themeList.innerHTML=themes.map(t=> `<button class="filter-item ${t === 'all' ? 'active' : ''}" onclick="setTheme(this,'${t}')" >$ {
+    themeList.innerHTML=themes .map((t,
+        )=> `<button class="filter-item ${t === " all" ? " active" : " "}" onclick="setTheme(this,'${t}')" >${
             t
         }
 
-        </button>`).join('');
+        </button>`,
+    ) .join("");
 
-    const tagStrip=document.getElementById('tag-strip');
+    const tagStrip=document.getElementById("tag-strip");
 
-    tagStrip.innerHTML=themes.map(t=> `<button class="tag-pill ${t === 'all' ? 'active' : ''}" onclick="setTheme(null,'${t}')" >$ {
+    tagStrip.innerHTML=themes .map((t,
+        )=> `<button class="tag-pill ${t === " all" ? " active" : " "}" onclick="setTheme(null,'${t}')" >${
             t
         }
 
-        </button>`).join('');
+        </button>`,
+    ) .join("");
 }
 
 function setSort(el, sort) {
-    document.querySelectorAll('[data-sort]').forEach(b=> b.classList.remove('active'));
-    el.classList.add('active');
+    document .querySelectorAll("[data-sort]") .forEach((b)=> b.classList.remove("active"));
+    el.classList.add("active");
     activeFilters.sort=sort;
     applyFilters();
 }
 
 function setCity(el, city) {
-    document.querySelectorAll('#city-list .filter-item').forEach(b=> b.classList.remove('active'));
-    el.classList.add('active');
+    document .querySelectorAll("#city-list .filter-item") .forEach((b)=> b.classList.remove("active"));
+    el.classList.add("active");
     activeFilters.city=city;
     applyFilters();
 }
 
 function setTheme(el, theme) {
-    document.querySelectorAll('#theme-list .filter-item, .tag-pill').forEach(b=> {
-            b.classList.remove('active');
-            if (b.innerText===theme || (theme==='all' && b.innerText==='all')) b.classList.add('active');
+    document .querySelectorAll("#theme-list .filter-item, .tag-pill") .forEach((b)=> {
+            b.classList.remove("active");
+            if (b.innerText===theme || (theme==="all" && b.innerText==="all")) b.classList.add("active");
         });
     activeFilters.theme=theme;
     applyFilters();
 }
 
 function setAge(el, age) {
-    document.querySelectorAll('[data-age]').forEach(b=> b.classList.remove('active'));
-    el.classList.add('active');
+    document .querySelectorAll("[data-age]") .forEach((b)=> b.classList.remove("active"));
+    el.classList.add("active");
     activeFilters.age=age;
     applyFilters();
 }
 
 function applyFilters(incrementAuth=true) {
-    const query=document.getElementById('search-input').value.toLowerCase();
-    const sortSelection=document.getElementById('sort-select').value;
+    const query=document .getElementById("search-input") .value.toLowerCase();
+    const sortSelection=document.getElementById("sort-select").value;
 
-    let filtered=IDEAS.filter(i=> {
-            const matchCity=activeFilters.city==='all' || i.city===activeFilters.city;
-            const matchTheme=activeFilters.theme==='all' || i.tag===activeFilters.theme;
-            const matchAge=activeFilters.age==='all' || i.age===activeFilters.age;
+    let filtered=IDEAS.filter((i)=> {
+            const matchCity=activeFilters.city==="all" || i.city===activeFilters.city;
+            const matchTheme=activeFilters.theme==="all" || i.tag===activeFilters.theme;
+            const matchAge=activeFilters.age==="all" || i.age===activeFilters.age;
             const matchSearch=i.idea.toLowerCase().includes(query) || i.name.toLowerCase().includes(query);
 
-            if (activeFilters.sort==='saved') return matchCity && matchTheme && matchAge && matchSearch && savedIds.has(i.id);
-            if (activeFilters.sort==='picked') return matchCity && matchTheme && matchAge && matchSearch && pickedIds.has(i.id);
+            if (activeFilters.sort==="saved") return (matchCity && matchTheme && matchAge && matchSearch && savedIds.has(i.id));
+            if (activeFilters.sort==="picked") return (matchCity && matchTheme && matchAge && matchSearch && pickedIds.has(i.id));
             return matchCity && matchTheme && matchAge && matchSearch;
         });
 
-    if (sortSelection==='remixes') filtered.sort((a, b)=> b.remixes - a.remixes);
-    else if (sortSelection==='energy') filtered.sort((a, b)=> b.energy - a.energy);
+    if (sortSelection==="remixes") filtered.sort((a, b)=> b.remixes - a.remixes);
+    else if (sortSelection==="energy") filtered.sort((a, b)=> b.energy - a.energy);
     else filtered.sort((a, b)=> b.id - a.id);
 
     renderGrid(filtered);
     updateStats();
     if (incrementAuth) browsingStats+=filtered.length;
-    const browsedEl=document.getElementById('stat-browsed');
+    const browsedEl=document.getElementById("stat-browsed");
     if (browsedEl) browsedEl.innerText=browsingStats;
 }
 
 function renderGrid(data) {
-    const grid=document.getElementById('ideas-grid');
-    grid.innerHTML='';
-    grid.className=activeView==='grid' ? 'ideas-grid': 'ideas-grid list-view';
+    const grid=document.getElementById("ideas-grid");
+    grid.innerHTML="";
+    grid.className=activeView==="grid" ? "ideas-grid": "ideas-grid list-view";
 
     if (data.length===0) {
         grid.innerHTML='<div style="grid-column: 1/-1; padding: 100px; text-align: center; color: var(--text-muted);">No ideas match your filters.</div>';
         return;
     }
 
-    data.forEach(i=> {
-            const card=document.createElement('div');
+    data.forEach((i)=> {
+            const card=document.createElement("div");
 
-            card.className=`card $ {
-                pickedIds.has(i.id) ? 'picked-state' : ''
+            card.className=`card ${
+                pickedIds.has(i.id) ? "picked-state" : ""
             }
 
             `;
 
-            card.innerHTML=` <div class="card-tag" >$ {
+            card.innerHTML=` <div class="card-tag" >${
                 i.tag
             }
 
-            </div> <div class="card-idea" >$ {
+            </div> <div class="card-idea" >${
                 i.idea
             }
 
-            </div> <div class="card-footer" > <div class="card-user" > <div class="u-avatar" >$ {
-                i.name.charAt(0)
+            </div> <div class="card-footer" > <div class="card-user" > <div class="u-avatar" >${
+                i.name.charAt(0,
+                )
             }
 
-            </div> <div class="u-info" > <span class="u-name" >$ {
+            </div> <div class="u-info" > <span class="u-name" >${
                 i.name
             }
 
-            </span> <span class="u-loc" >$ {
+            </span> <span class="u-loc" >${
                 i.city
             }
 
-            </span> </div> </div> <div class="card-actions" > <button class="btn-card btn-save ${savedIds.has(i.id) ? 'active' : ''}" onclick="toggleSave(event, ${i.id}, this)" > <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /></svg> </button> <button class="btn-card btn-pick" onclick="openPick(event, ${i.id})" > <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12" /></svg> </button> </div> </div> `;
+            </span> </div> </div> <div class="card-actions" > <button class="btn-card btn-save ${savedIds.has(i.id) ? " active" : " "}" onclick="toggleSave(event, ${i.id}, this)" > <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /></svg> </button> <button class="btn-card btn-pick" onclick="openPick(event, ${i.id})" > <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12" /></svg> </button> </div> </div> `;
             grid.appendChild(card);
         });
 
-    document.getElementById('pool-count').innerText=`Displaying $ {
+    document.getElementById("pool-count").innerText=`Displaying ${
         data.length
     }
 
@@ -744,12 +365,12 @@ function toggleSave(e, id, btn) {
 
     if (savedIds.has(id)) {
         savedIds.delete(id);
-        btn.classList.remove('active');
+        btn.classList.remove("active");
     }
 
     else {
         savedIds.add(id);
-        btn.classList.add('active');
+        btn.classList.add("active");
     }
 
     updateStats();
@@ -758,18 +379,18 @@ function toggleSave(e, id, btn) {
 function openPick(e, id) {
     e.stopPropagation();
     pendingPickId=id;
-    const idea=IDEAS.find(i=> i.id===id);
-    document.getElementById('modal-preview').innerText=`"${idea.idea}" `;
-    document.getElementById('modal-bg').classList.add('active');
+    const idea=IDEAS.find((i)=> i.id===id);
+    document.getElementById("modal-preview").innerText=`"${idea.idea}" `;
+    document.getElementById("modal-bg").classList.add("active");
 }
 
 function closeModal() {
-    document.getElementById('modal-bg').classList.remove('active');
+    document.getElementById("modal-bg").classList.remove("active");
 }
 
 function confirmPick() {
     if (pendingPickId) {
-        const confirmBtn=document.querySelector('.modal-confirm');
+        const confirmBtn=document.querySelector(".modal-confirm");
         const originalText=confirmBtn.innerText;
         confirmBtn.innerText="Securing...";
         confirmBtn.style.opacity="0.7";
@@ -785,7 +406,10 @@ function confirmPick() {
                 confirmBtn.style.pointerEvents="auto";
             }
 
-            , 800);
+            ,
+
+            800,
+        );
     }
 
     else {
@@ -794,7 +418,7 @@ function confirmPick() {
 }
 
 function onBgClick(event) {
-    if (event.target.id==='modal-bg') {
+    if (event.target.id==="modal-bg") {
         closeModal();
     }
 }
@@ -806,28 +430,32 @@ function exportReport() {
             showToast("Report successfully exported to secure drive.");
         }
 
-        , 2500);
+        ,
+
+        2500,
+    );
 }
 
 function showToast(msg) {
-    const t=document.getElementById('toast');
+    const t=document.getElementById("toast");
     t.innerText=msg;
-    t.classList.add('show');
-    setTimeout(()=> t.classList.remove('show'), 3000);
+    t.classList.add("show");
+    setTimeout(()=> t.classList.remove("show"), 3000);
 }
 
 function updateStats() {
-    document.getElementById('badge-total').innerText=IDEAS.length;
-    document.getElementById('badge-saved').innerText=savedIds.size;
-    document.getElementById('badge-picked').innerText=pickedIds.size;
-    document.getElementById('stat-total').innerText=IDEAS.length;
-    document.getElementById('stat-youth').innerText=new Set(IDEAS.map(i=> i.name)).size;
+    document.getElementById("badge-total").innerText=IDEAS.length;
+    document.getElementById("badge-saved").innerText=savedIds.size;
+    document.getElementById("badge-picked").innerText=pickedIds.size;
+    document.getElementById("stat-total").innerText=IDEAS.length;
+    document.getElementById("stat-youth").innerText=new Set(IDEAS.map((i)=> i.name),
+    ).size;
 }
 
 function setView(view) {
     activeView=view;
-    document.getElementById('btn-grid').classList.toggle('active', view==='grid');
-    document.getElementById('btn-list').classList.toggle('active', view==='list');
+    document .getElementById("btn-grid") .classList.toggle("active", view==="grid");
+    document .getElementById("btn-list") .classList.toggle("active", view==="list");
     applyFilters();
 }
 

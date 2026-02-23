@@ -1,1 +1,188 @@
-< !DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="FIKRA — Your Intel Dashboard." /><title>FIKRA — My Intel</title><link rel="icon" href="favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="style.css" /><link rel="stylesheet" href="shared-nav.css" /><link rel="stylesheet" href="tactical-dash.css" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" /></head><body class="fikra-nav-offset"><canvas id="bg-canvas"></canvas><nav class="fikra-nav"><div class="fikra-nav-inner"><a href="index.html" class="fikra-nav-logo"><span class="fikra-logo-text">FIKRA</span><span class="fikra-logo-dot">.</span></a><div class="fikra-nav-divider"></div><div class="fikra-nav-links"><a href="index.html" class="fikra-nav-link" id="snl-feed"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></svg>Feed </a><a href="profile.html" class="fikra-nav-link" id="snl-profile"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>Profile </a><a href="dashboard.html" class="fikra-nav-link active" id="snl-dashboard"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>My Intel </a></div><div class="fikra-nav-right"><button id="theme-toggle" class="fikra-nav-btn" onclick="toggleTheme()" title="Toggle Theme" style="margin-right:8px; width:36px; padding:0; justify-content:center;">🌙</button><a href="org-dashboard.html" class="fikra-nav-btn org-btn">Org Portal</a><a href="admin-dashboard.html" class="fikra-nav-btn admin-btn">Admin</a></div></div></nav><div id="app" class="app-container site-layout"><div class="site-main-content"><section id="dashboard-screen" class="screen site-screen dashboard-root active" style="opacity: 1;"><div class="tac-glitch" id="tac-glitch"></div><div class="dash-hero"><div class="dash-hero-grid"><div class="dash-prime-card"><div class="dpc-label">COMMAND RATING</div><div class="dpc-val" id="dash-impact-val">0</div><div class="dpc-status ripple-status" id="current-vibe">LINK: ENCRYPTED</div></div><div class="dash-mini-grid"><div class="dmc"><div class="dmc-lbl">ACTIVE OPERATIONS</div><div class="dmc-val" id="dash-drops-val">0</div></div><div class="dmc"><div class="dmc-lbl">Pulse Tag</div><div class="dmc-val" id="dash-top-tag">#TECH</div></div></div></div></div><div class="dash-secondary-grid"><div class="dash-card di-mission-card"><div class="dmc-header">[ ACTIVE CLASSIFIED MISSION]</div><div class="dmc-body"><h4 id="mission-title">OPERATION: NEURAL SPARK</h4><p id="mission-desc">Secure 5 remixes on a single trending Fikra to establish a cognitive bridge.</p><div class="dmc-progress-wrap"><div class="dmc-label">COMPLETION: <span id="mission-pct">0%</span></div><div class="dmc-bar"><div id="mission-fill" style="width:0%"></div></div></div></div></div><div class="dash-card"><h3>SECTOR HISTORY</h3><div class="pulse-chart"><svg viewBox="0 0 200 60"><path id="pulse-path" fill="none" stroke="#8A3FFF" stroke-width="2" /><path id="pulse-fill" fill="rgba(138,63,255,0.1)" /></svg></div></div><div class="dash-card"><h3>SIGNAL NODES</h3><div id="reach-nodes" class="reach-nodes"></div></div><div class="dash-card"><h3>COGNITIVE DENSITY</h3><div class="density-meter"><div class="density-track"><div id="density-fill" class="density-fill"></div></div><div id="density-val" class="density-label">0 remixes / fikra</div></div></div></div></section></div></div><div id="toast" class="toast"></div><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FIKRA — Your Intel Dashboard." />
+    <title>FIKRA — My Intel</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="shared-nav.css" />
+    <link rel="stylesheet" href="tactical-dash.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="fikra-nav-offset">
+    <canvas id="bg-canvas"></canvas>
+    <nav class="fikra-nav">
+      <div class="fikra-nav-inner">
+        <a href="index.html" class="fikra-nav-logo"
+          ><span class="fikra-logo-text">FIKRA</span
+          ><span class="fikra-logo-dot">.</span></a
+        >
+        <div class="fikra-nav-divider"></div>
+        <div class="fikra-nav-links">
+          <a href="index.html" class="fikra-nav-link" id="snl-feed"
+            ><svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="8" y1="6" x2="21" y2="6" />
+              <line x1="8" y1="12" x2="21" y2="12" />
+              <line x1="8" y1="18" x2="21" y2="18" />
+              <line x1="3" y1="6" x2="3.01" y2="6" />
+              <line x1="3" y1="12" x2="3.01" y2="12" />
+              <line x1="3" y1="18" x2="3.01" y2="18" /></svg
+            >Feed </a
+          ><a href="profile.html" class="fikra-nav-link" id="snl-profile"
+            ><svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" /></svg
+            >Profile </a
+          ><a
+            href="dashboard.html"
+            class="fikra-nav-link active"
+            id="snl-dashboard"
+            ><svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" /></svg
+            >My Intel
+          </a>
+        </div>
+        <div class="fikra-nav-right">
+          <button
+            id="theme-toggle"
+            class="fikra-nav-btn"
+            onclick="toggleTheme()"
+            title="Toggle Theme"
+            style="
+              margin-right: 8px;
+              width: 36px;
+              padding: 0;
+              justify-content: center;
+            "
+          >
+            🌙</button
+          ><a href="org-dashboard.html" class="fikra-nav-btn org-btn"
+            >Org Portal</a
+          ><a href="admin-dashboard.html" class="fikra-nav-btn admin-btn"
+            >Admin</a
+          >
+        </div>
+      </div>
+    </nav>
+    <div id="app" class="app-container site-layout">
+      <div class="site-main-content">
+        <section
+          id="dashboard-screen"
+          class="screen site-screen dashboard-root active"
+          style="opacity: 1"
+        >
+          <div class="tac-glitch" id="tac-glitch"></div>
+          <div class="dash-hero">
+            <div class="dash-hero-grid">
+              <div class="dash-prime-card">
+                <div class="dpc-label">COMMAND RATING</div>
+                <div class="dpc-val" id="dash-impact-val">0</div>
+                <div class="dpc-status ripple-status" id="current-vibe">
+                  LINK: ENCRYPTED
+                </div>
+              </div>
+              <div class="dash-mini-grid">
+                <div class="dmc">
+                  <div class="dmc-lbl">ACTIVE OPERATIONS</div>
+                  <div class="dmc-val" id="dash-drops-val">0</div>
+                </div>
+                <div class="dmc">
+                  <div class="dmc-lbl">Pulse Tag</div>
+                  <div class="dmc-val" id="dash-top-tag">#TECH</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dash-secondary-grid">
+            <div class="dash-card di-mission-card">
+              <div class="dmc-header">[ ACTIVE CLASSIFIED MISSION]</div>
+              <div class="dmc-body">
+                <h4 id="mission-title">OPERATION: NEURAL SPARK</h4>
+                <p id="mission-desc">
+                  Secure 5 remixes on a single trending Fikra to establish a
+                  cognitive bridge.
+                </p>
+                <div class="dmc-progress-wrap">
+                  <div class="dmc-label">
+                    COMPLETION: <span id="mission-pct">0%</span>
+                  </div>
+                  <div class="dmc-bar">
+                    <div id="mission-fill" style="width: 0%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="dash-card">
+              <h3>SECTOR HISTORY</h3>
+              <div class="pulse-chart">
+                <svg viewBox="0 0 200 60">
+                  <path
+                    id="pulse-path"
+                    fill="none"
+                    stroke="#8A3FFF"
+                    stroke-width="2"
+                  />
+                  <path id="pulse-fill" fill="rgba(138,63,255,0.1)" />
+                </svg>
+              </div>
+            </div>
+            <div class="dash-card">
+              <h3>SIGNAL NODES</h3>
+              <div id="reach-nodes" class="reach-nodes"></div>
+            </div>
+            <div class="dash-card">
+              <h3>COGNITIVE DENSITY</h3>
+              <div class="density-meter">
+                <div class="density-track">
+                  <div id="density-fill" class="density-fill"></div>
+                </div>
+                <div id="density-val" class="density-label">
+                  0 remixes / fikra
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div id="toast" class="toast"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
