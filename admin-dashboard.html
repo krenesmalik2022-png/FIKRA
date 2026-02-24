@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+< !DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="admin-dashboard.css" />
   </head>
   <body class="fikra-nav-offset">
-    <!-- Global Live Ticker -->
+    < !-- Global Live Ticker -->
     <div class="global-live-ticker">
       <div class="ticker-content">
         <span class="ticker-item"
@@ -168,9 +168,9 @@
             </p>
           </div>
         </div>
-        <!-- NEW SURVEILLANCE PANEL -->
-        <div id="panel-surveillance" class="admin-panel" style="display: none">
-          <!-- SEARCH MODULE -->
+        < !-- NEW SURVEILLANCE PANEL -->
+        <section id="panel-surveillance" class="admin-panel hidden-panel">
+          < !-- SEARCH MODULE -->
           <div class="surveillance-search-module">
             <div class="search-input-wrapper">
               <span class="search-prompt">>SEARCH_USER:</span
@@ -181,12 +181,12 @@
                 autocomplete="off"
               /><button id="search-trigger" class="btn-matrix">Execute</button>
             </div>
-            <div id="search-dossier" class="dossier-card" style="display: none">
-              <!-- Javascript will inject the user dossier here -->
+            <div id="search-dossier" class="dossier-card hidden-panel">
+              < !-- Javascript will inject the user dossier here -->
             </div>
           </div>
           <div class="surveillance-grid">
-            <div class="s-panel">
+            <article class="s-panel">
               <div class="s-header">
                 <div class="s-title">Global Event Terminal</div>
                 <div class="live-indicator"></div>
@@ -197,8 +197,8 @@
                   Connection to Global Nodes established.
                 </div>
               </div>
-            </div>
-            <div class="s-panel">
+            </article>
+            <article class="s-panel">
               <div class="s-header">
                 <div class="s-title">Active Node Radar</div>
               </div>
@@ -208,11 +208,11 @@
                 <div class="radar-ring"></div>
                 <div id="radar-blips"></div>
               </div>
-            </div>
+            </article>
           </div>
-        </div>
-        <!-- END SURVEILLANCE PANEL -->
-        <div id="panel-queue" class="admin-panel" style="display: block">
+        </section>
+        < !-- END SURVEILLANCE PANEL -->
+        <section id="panel-queue" class="admin-panel visible-panel">
           <div class="admin-banner">
             <div>
               <span class="ab-badge">✦ GLOBAL ADMIN NOTICE</span>
@@ -228,26 +228,26 @@
             </div>
           </div>
           <div class="stat-row">
-            <div class="stat-card">
+            <article class="stat-card">
               <div class="sc-label">Pending Approval</div>
               <div class="sc-val">42</div>
               <div class="sc-trend up">↑ 12 new</div>
-            </div>
-            <div class="stat-card">
+            </article>
+            <article class="stat-card">
               <div class="sc-label">Flagged Today</div>
               <div class="sc-val">05</div>
               <div class="sc-trend">Stable</div>
-            </div>
-            <div class="stat-card">
+            </article>
+            <article class="stat-card">
               <div class="sc-label">Global Thinkers</div>
               <div class="sc-val">2.8k</div>
               <div class="sc-trend up">↑ 840 new</div>
-            </div>
-            <div class="stat-card">
+            </article>
+            <article class="stat-card">
               <div class="sc-label">Network Health</div>
-              <div class="sc-val" style="color: var(--green)">100%</div>
+              <div class="sc-val sc-val-health">100%</div>
               <div class="sc-trend">Operational</div>
-            </div>
+            </article>
           </div>
           <div class="table-container">
             <div class="c-head">
@@ -265,119 +265,52 @@
               <tbody id="mod-queue"></tbody>
             </table>
           </div>
-        </div>
-        <div id="panel-flagged" class="admin-panel" style="display: none">
-          <div class="stat-card" style="text-align: center; padding: 60px">
-            <div style="font-size: 40px; margin-bottom: 20px">🚩</div>
+        </section>
+        <section id="panel-flagged" class="admin-panel hidden-panel">
+          <article class="stat-card empty-state-card">
+            <div class="empty-state-icon">🚩</div>
             <h2>No Flagged Content</h2>
-            <p style="color: var(--text-dim)">
+            <p class="empty-state-text">
               The global community is currently behaving. 0 active flags.
             </p>
-          </div>
-        </div>
-        <div id="panel-users" class="admin-panel" style="display: none">
-          <div class="stat-card" style="text-align: center; padding: 60px">
-            <div style="font-size: 40px; margin-bottom: 20px">👥</div>
+          </article>
+        </section>
+        <section id="panel-users" class="admin-panel hidden-panel">
+          <article class="stat-card empty-state-card">
+            <div class="empty-state-icon">👥</div>
             <h2>2.8k Global Thinkers</h2>
-            <p style="color: var(--text-dim)">
+            <p class="empty-state-text">
               User management sync active. Data flowing seamlessly.
             </p>
-          </div>
-        </div>
-        <div id="panel-settings" class="admin-panel" style="display: none">
-          <div style="display: grid; gap: 24px">
-            <div class="stat-card">
-              <h3 style="margin-top: 0; margin-bottom: 16px">
-                Global AI Moderation
-              </h3>
-              <p
-                style="
-                  color: var(--text-dim);
-                  margin-bottom: 20px;
-                  font-size: 14px;
-                "
-              >
+          </article>
+        </section>
+        <section id="panel-settings" class="admin-panel hidden-panel">
+          <div class="settings-grid">
+            <article class="stat-card">
+              <h3 class="card-title">Global AI Moderation</h3>
+              <p class="card-desc">
                 Automatically flag and quarantine ideas that violate the
                 universal Fikra protocol.
               </p>
-              <button
-                style="
-                  background: var(--purple);
-                  color: white;
-                  border: none;
-                  padding: 10px 20px;
-                  border-radius: 8px;
-                  font-weight: 600;
-                  cursor: pointer;
-                  transition: 0.2s;
-                "
-                onmouseover="this.style.opacity = 0.8"
-                onmouseout="this.style.opacity = 1"
-              >
-                Configure Node Rules →
-              </button>
-            </div>
-            <div class="stat-card">
-              <h3 style="margin-top: 0; margin-bottom: 16px">System Cache</h3>
-              <p
-                style="
-                  color: var(--text-dim);
-                  margin-bottom: 20px;
-                  font-size: 14px;
-                "
-              >
+              <button class="btn-purple">Configure Node Rules →</button>
+            </article>
+            <article class="stat-card">
+              <h3 class="card-title">System Cache</h3>
+              <p class="card-desc">
                 Flush the edge CDN cache across all global regions to force UI
                 updates.
               </p>
-              <button
-                style="
-                  background: transparent;
-                  color: var(--red);
-                  border: 1px solid var(--red);
-                  padding: 10px 20px;
-                  border-radius: 8px;
-                  font-weight: 600;
-                  cursor: pointer;
-                  transition: 0.2s;
-                "
-                onmouseover="this.style.background = 'rgba(255, 59, 59, 0.1)'"
-                onmouseout="this.style.background = 'transparent'"
-              >
-                Purge Cache ⚠️
-              </button>
-            </div>
-            <div class="stat-card">
-              <h3 style="margin-top: 0; margin-bottom: 16px">
-                Export System Logs
-              </h3>
-              <p
-                style="
-                  color: var(--text-dim);
-                  margin-bottom: 20px;
-                  font-size: 14px;
-                "
-              >
+              <button class="btn-red-outline">Purge Cache ⚠️</button>
+            </article>
+            <article class="stat-card">
+              <h3 class="card-title">Export System Logs</h3>
+              <p class="card-desc">
                 Download 256-bit encrypted system logs for the past 24 hours.
               </p>
-              <button
-                style="
-                  background: rgba(255, 255, 255, 0.1);
-                  color: white;
-                  border: none;
-                  padding: 10px 20px;
-                  border-radius: 8px;
-                  font-weight: 600;
-                  cursor: pointer;
-                  transition: 0.2s;
-                "
-                onmouseover="this.style.background = 'rgba(255,255,255,0.2)'"
-                onmouseout="this.style.background = 'rgba(255,255,255,0.1)'"
-              >
-                Download .log
-              </button>
-            </div>
+              <button class="btn-white-trans">Download .log</button>
+            </article>
           </div>
-        </div>
+        </section>
       </main>
     </div>
     <div class="toast" id="toast"></div>
@@ -413,13 +346,19 @@
         const tbody = document.getElementById("mod-queue");
 
         tbody.innerHTML = QUEUE.map(
-          (item) => ` <tr> <td><span class="idea-txt" >${item.idea}
+          (item) => ` <tr> <td><span class="idea-txt" >$ {
+      item.idea
+    }
 
-        </span></td> <td>${item.user}
+    </span></td> <td>$ {
+      item.user
+    }
 
-        </td> <td><span class="badge ${item.status}" >${item.status}
+    </td> <td><span class="badge ${item.status}" >$ {
+      item.status
+    }
 
-        </span></td> <td> <div class="actions" > <button class="btn-icon approve" onclick="process('${item.id}', 'approved')" title="Approve" > <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12" ></polyline></svg> </button> <button class="btn-icon reject" onclick="process('${item.id}', 'rejected')" title="Reject" > <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" ><line x1="18" y1="6" x2="6" y2="18" ></line><line x1="6" y1="6" x2="18" y2="18" ></line></svg> </button> </div> </td> </tr> `,
+    </span></td> <td> <div class="actions" > <button class="btn-icon approve" onclick="process('${item.id}', 'approved')" title="Approve" > <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" ><polyline points="20 6 9 17 4 12" ></polyline></svg> </button> <button class="btn-icon reject" onclick="process('${item.id}', 'rejected')" title="Reject" > <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" ><line x1="18" y1="6" x2="6" y2="18" ></line><line x1="6" y1="6" x2="18" y2="18" ></line></svg> </button> </div> </td> </tr> `,
         ).join("");
       }
 
@@ -499,23 +438,33 @@
             // Terminal lines
             const now = new Date();
 
-            const timeFrame = `[${now.getHours().toString().padStart(2, "0")}
+            const timeFrame = `[$ {
+        now.getHours().toString().padStart(2, "0")
+      }
 
-            :${now.getMinutes().toString().padStart(2, "0")}
+      :$ {
+        now.getMinutes().toString().padStart(2, "0")
+      }
 
-            :${now.getSeconds().toString().padStart(2, "0")}
+      :$ {
+        now.getSeconds().toString().padStart(2, "0")
+      }
 
-            ]`;
+      ]`;
             const randLog = logs[Math.floor(Math.random() * logs.length)];
             const isWarn = randLog.startsWith("WARN:");
             const div = document.createElement("div");
             div.className = "terminal-line" + (isWarn ? " warn" : "");
 
-            div.innerHTML = `<span class="timestamp" >${timeFrame}
+            div.innerHTML = `<span class="timestamp" >$ {
+        timeFrame
+      }
 
-            </span> ${randLog}
+      </span> $ {
+        randLog
+      }
 
-            `;
+      `;
             terminal.appendChild(div);
 
             if (terminal.children.length > 15) {
@@ -531,13 +480,17 @@
               const angle = Math.random() * Math.PI * 2;
               const radius = Math.random() * 100;
 
-              blip.style.left = `calc(50% + ${Math.cos(angle) * radius}
+              blip.style.left = `calc(50% + $ {
+            Math.cos(angle) * radius
+          }
 
-                    px)`;
+          px)`;
 
-              blip.style.top = `calc(50% + ${Math.sin(angle) * radius}
+              blip.style.top = `calc(50% + $ {
+            Math.sin(angle) * radius
+          }
 
-                    px)`;
+          px)`;
               radar.appendChild(blip);
 
               setTimeout(
@@ -571,31 +524,52 @@
           dossier.innerHTML =
             '<div class="dossier-loader">Running Global Node Diagnostics...</div>';
 
-          setTimeout(() => {
-            const name = query.replace("@", "");
-            const initials = name.substring(0, 2).toUpperCase() || "XX";
-            const isRisky = Math.random() > 0.8;
+          setTimeout(
+            () => {
+              const name = query.replace("@", "");
+              const initials = name.substring(0, 2).toUpperCase() || "XX";
+              const isRisky = Math.random() > 0.8;
 
-            dossier.innerHTML = `
-        <div class="d-avatar">${initials}</div>
-        <div class="d-info">
-          <div class="d-name">${query}</div>
-          <div class="d-handle">ID: #${Math.floor(Math.random() * 90000) + 10000} | STATUS: ACTIVE</div>
-          <div class="d-grid">
-            <div class="d-stat">Energy Pulse<span>${Math.floor(Math.random() * 100)}%</span></div>
-            <div class="d-stat">Location<span>Node Sector ${Math.floor(Math.random() * 9) + 1}</span></div>
-            <div class="d-stat">Ideas Dropped<span>${Math.floor(Math.random() * 50)}</span></div>
-            <div class="d-stat">Risk Level<span style="color:var(${isRisky ? "--red-alert" : "--green-matrix"})">${isRisky ? "ELEVATED" : "NOMINAL"}</span></div>
-          </div>
-        </div>
-      `;
-          }, 1200);
+              dossier.innerHTML = ` <div class="d-avatar" >$ {
+            initials
+          }
+
+          </div> <div class="d-info" > <div class="d-name" >$ {
+            query
+          }
+
+          </div> <div class="d-handle" >ID: #$ {
+            Math.floor(Math.random() * 90000) + 10000
+          }
+
+          | STATUS: ACTIVE</div> <div class="d-grid" > <div class="d-stat" >Energy Pulse<span>$ {
+            Math.floor(Math.random() * 100)
+          }
+
+          %</span></div> <div class="d-stat" >Location<span>Node Sector $ {
+            Math.floor(Math.random() * 9) + 1
+          }
+
+          </span></div> <div class="d-stat" >Ideas Dropped<span>$ {
+            Math.floor(Math.random() * 50)
+          }
+
+          </span></div> <div class="d-stat" >Risk Level<span class="${isRisky ? "text-red-alert" : "text-green-matrix"}" >$ {
+            isRisky ? "ELEVATED" : "NOMINAL"
+          }
+
+          </span></div> </div> </div> `;
+            },
+
+            1200,
+          );
         });
 
         input.addEventListener("keypress", (e) => {
           if (e.key === "Enter") btn.click();
         });
       }
+
       document.addEventListener("DOMContentLoaded", initSearch);
     </script>
   </body>

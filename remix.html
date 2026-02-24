@@ -1,4 +1,4 @@
-<!doctype html>
+< !DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -82,15 +82,9 @@
         <div class="fikra-nav-right">
           <button
             id="theme-toggle"
-            class="fikra-nav-btn"
+            class="fikra-nav-btn theme-toggle-btn"
             onclick="toggleTheme()"
             title="Toggle Theme"
-            style="
-              margin-right: 8px;
-              width: 36px;
-              padding: 0;
-              justify-content: center;
-            "
           >
             🌙</button
           ><a href="org-dashboard.html" class="fikra-nav-btn org-btn"
@@ -103,20 +97,8 @@
     </nav>
     <div id="app" class="app-container site-layout">
       <div class="site-main-content">
-        <section
-          id="remix-screen"
-          class="screen site-screen active"
-          style="opacity: 1"
-        >
-          <canvas
-            id="remix-canvas"
-            style="
-              position: absolute;
-              inset: 0;
-              pointer-events: none;
-              z-index: 0;
-            "
-          ></canvas>
+        <section id="remix-screen" class="screen site-screen active opacity-1">
+          <canvas id="remix-canvas" class="canvas-bg"></canvas>
           <div class="remix-header">
             <a
               href="index.html"

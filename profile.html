@@ -1,4 +1,4 @@
-<!doctype html>
+< !DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -82,15 +82,9 @@
         <div class="fikra-nav-right">
           <button
             id="theme-toggle"
-            class="fikra-nav-btn"
+            class="fikra-nav-btn theme-toggle-btn"
             onclick="toggleTheme()"
             title="Toggle Theme"
-            style="
-              margin-right: 8px;
-              width: 36px;
-              padding: 0;
-              justify-content: center;
-            "
           >
             🌙</button
           ><a href="org-dashboard.html" class="fikra-nav-btn org-btn"
@@ -105,8 +99,7 @@
       <div class="site-main-content">
         <section
           id="profile-screen"
-          class="screen site-screen profile-root active"
-          style="opacity: 1"
+          class="screen site-screen profile-root active opacity-1"
         >
           <div class="ps-cover">
             <div class="ps-cover-particles">
@@ -266,37 +259,32 @@
             <div class="pm-avatar" id="pm-avatar">Z</div>
             <div class="color-picker">
               <button
-                class="avatar-color-swatch active"
-                style="background: #7b2fff"
+                class="avatar-color-swatch active bg-purple"
                 onclick="setAvatarColor(this, '#7B2FFF')"
+                title="Select Purple"
               ></button
               ><button
-                class="avatar-color-swatch"
-                style="background: #00d2ff"
+                class="avatar-color-swatch bg-cyan"
                 onclick="setAvatarColor(this, '#00D2FF')"
                 title="Select Blue"
               ></button
               ><button
-                class="avatar-color-swatch"
-                style="background: #ffd700"
+                class="avatar-color-swatch bg-gold"
                 onclick="setAvatarColor(this, '#FFD700')"
                 title="Select Yellow"
               ></button
               ><button
-                class="avatar-color-swatch"
-                style="background: #ff3b3b"
+                class="avatar-color-swatch bg-red"
                 onclick="setAvatarColor(this, '#FF3B3B')"
                 title="Select Red"
               ></button
               ><button
-                class="avatar-color-swatch"
-                style="background: #00c97e"
+                class="avatar-color-swatch bg-green"
                 onclick="setAvatarColor(this, '#00C97E')"
                 title="Select Green"
               ></button
               ><button
-                class="avatar-color-swatch"
-                style="background: #ff8c00"
+                class="avatar-color-swatch bg-orange"
                 onclick="setAvatarColor(this, '#FF8C00')"
                 title="Select Orange"
               ></button>

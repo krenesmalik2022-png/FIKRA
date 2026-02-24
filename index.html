@@ -1,4 +1,4 @@
-<!doctype html>
+﻿< !doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
       name="description"
       content="FIKRA — A raw, unfiltered intelligence engine for the global youth generation."
     />
-    <!-- Open Graph -->
+    < !-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://fikra.network/" />
     <meta property="og:title" content="FIKRA — Global Raw Ideas" />
@@ -29,8 +29,8 @@
     />
   </head>
   <body class="immersive-theme">
-    <!-- Background Canvas --><canvas id="bg-canvas"></canvas
-    ><!-- UNIFIED TOP NAV -->
+    < !-- Background Canvas --><canvas id="bg-canvas"></canvas>< !-- UNIFIED TOP
+    NAV -->
     <nav class="fikra-nav immersive-nav">
       <div class="fikra-nav-inner">
         <a href="index.html" class="fikra-nav-logo"
@@ -38,7 +38,7 @@
           ><span class="fikra-logo-dot">.</span></a
         >
         <div class="fikra-nav-divider"></div>
-        <!-- Center Links -->
+        < !-- Center Links -->
         <div class="fikra-nav-links">
           <a
             href="index.html"
@@ -80,7 +80,7 @@
               <circle cx="12" cy="7" r="4" /></svg
           ></a>
         </div>
-        <!-- Right Controls -->
+        < !-- Right Controls -->
         <div class="fikra-nav-right">
           <button
             id="theme-toggle"
@@ -93,7 +93,7 @@
         </div>
       </div>
     </nav>
-    <!-- Filter Overlay -->
+    < !-- Filter Overlay -->
     <div class="filter-bar immersive-filters" id="filter-bar">
       <button class="filter-chip active" data-filter="all">All</button
       ><button class="filter-chip" data-filter="Tech">Tech</button
@@ -102,12 +102,15 @@
       ><button class="filter-chip" data-filter="Culture">Culture</button
       ><button class="filter-chip" data-filter="Wellness">Wellness</button>
     </div>
-    <!-- APP CONTAINER -->
-    <div id="app" class="app-container site-layout">
-      <!-- Main Scroll Snapping Feed -->
-      <main id="feed-screen" class="screen active site-screen immersive-main">
-        <!-- First Frame: Hero -->
-        <section class="reel-frame hero-frame">
+    < !-- APP CONTAINER -->
+    <main id="app" class="app-container site-layout">
+      < !-- Main Scroll Snapping Feed -->
+      <section
+        id="feed-screen"
+        class="screen active site-screen immersive-main"
+      >
+        < !-- First Frame: Hero -->
+        <article class="reel-frame hero-frame">
           <div class="feed-hero immersive-hero">
             <div class="feed-hero-left">
               <h1 class="feed-hero-title">
@@ -119,16 +122,16 @@
             </div>
           </div>
           <div class="scroll-indicator"><div class="scroll-arrow">↓</div></div>
-        </section>
-        <!-- Ideas Container (Display Contents for Snapping) -->
-        <div
+        </article>
+        < !-- Ideas Container (Display Contents for Snapping) -->
+        <section
           id="ideas-container"
           class="ideas-list immersive-reels-container"
-        ></div>
-      </main>
-    </div>
-    <!-- SUCCESS OVERLAY -->
-    <div id="success-overlay" class="success-overlay">
+        ></section>
+      </section>
+    </main>
+    < !-- SUCCESS OVERLAY -->
+    <aside id="success-overlay" class="success-overlay">
       <div class="so-content">
         <div class="so-icon">✅</div>
         <h2>MISSION SUCCESSFUL</h2>
@@ -140,7 +143,7 @@
           RETURN TO COMMAND
         </button>
       </div>
-    </div>
+    </aside>
     <div id="toast" class="toast"></div>
     <script src="app.js"></script>
   </body>

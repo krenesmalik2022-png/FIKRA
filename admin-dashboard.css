@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     --bg-dark: #020202;
     --surface-dark: #0a0a0a;
     --panel-bg: rgba(10, 20, 10, 0.4);
@@ -617,6 +617,95 @@ body::before {
     transform: translateX(-50%) translateY(0);
 }
 
+/* -- Extracted Helper Classes from HTML -- */
+.hidden-panel {
+    display: none;
+}
+
+.visible-panel {
+    display: block;
+}
+
+.sc-val-health {
+    color: var(--green-matrix);
+}
+
+.empty-state-card {
+    text-align: center;
+    padding: 60px;
+}
+
+.empty-state-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.empty-state-text {
+    color: var(--text-dim);
+}
+
+.settings-grid {
+    display: grid;
+    gap: 24px;
+}
+
+.card-title {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.card-desc {
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.btn-purple {
+    background: #b829ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-purple:hover {
+    opacity: 0.8;
+}
+
+.btn-red-outline {
+    background: transparent;
+    color: var(--red-alert);
+    border: 1px solid var(--red-alert);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-red-outline:hover {
+    background: rgba(255, 59, 59, 0.1);
+}
+
+.btn-white-trans {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-white-trans:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+
 /* -- Surveillance Search Module -- */
 .surveillance-search-module {
     margin-bottom: 30px;
@@ -784,4 +873,6 @@ body::before {
     font-weight: 700;
     color: #fff;
     margin-top: 4px;
-}
+}. t e x t - r e d - a l e r t   {   c o l o r :   v a r ( - - r e d - a l e r t )   ! i m p o r t a n t ;   }   . t e x t - g r e e n - m a t r i x   {   c o l o r :   v a r ( - - g r e e n - m a t r i x )   ! i m p o r t a n t ;   } 
+ 
+ 
