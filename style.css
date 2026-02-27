@@ -1386,13 +1386,17 @@ a {
 
 .ideas-list {
 
-    display: grid;
+    display: flex;
 
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    flex-direction: column;
 
-    gap: 30px;
+    gap: 60px;
 
     margin-bottom: 100px;
+
+    align-items: center;
+
+    width: 100%;
 
 }
 
@@ -1479,6 +1483,52 @@ a {
     border-radius: 4px;
 
     letter-spacing: 1px;
+
+    z-index: 20;
+
+}
+
+
+
+.founder-badge {
+
+    display: inline-block;
+
+    background: var(--vibrant-purple);
+
+    color: #fff;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    padding: 2px 6px;
+
+    border-radius: 2px;
+
+    margin-left: 8px;
+
+    vertical-align: middle;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+
+.moderated-note {
+
+    font-size: 10px;
+
+    color: var(--tac-amber-dim);
+
+    font-weight: 700;
+
+    margin-top: 5px;
+
+    display: block;
+
+    text-transform: uppercase;
 
 }
 

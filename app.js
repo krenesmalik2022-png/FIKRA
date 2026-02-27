@@ -396,6 +396,33 @@ function setupEventListeners() {
     .getElementById("remix-submit-btn")
     ?.addEventListener("click", handleRemixSubmit);
 
+  // Tag Selection in Create Modal
+  document.querySelectorAll(".tag-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll(".tag-chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+    });
+  });
+
+  // Simulated Media Selection
+  const mediaZone = document.getElementById("media-upload-zone");
+  const previewImg = document.getElementById("preview-img");
+  const uploadPlaceholder = document.querySelector(".upload-placeholder");
+
+  const MOCK_UPLOADS = [
+    "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800"
+  ];
+
+  mediaZone?.addEventListener("click", () => {
+    const randomImg = MOCK_UPLOADS[Math.floor(Math.random() * MOCK_UPLOADS.length)];
+    previewImg.src = randomImg;
+    previewImg.classList.remove("hide");
+    uploadPlaceholder.classList.add("hide");
+    showToast("📸 Media Linked");
+  });
+
   // Broadcast Button Logic
   document.getElementById("broadcast-btn")?.addEventListener("click", () => {
     const caption = document.getElementById("post-caption").value.trim();
@@ -404,22 +431,32 @@ function setupEventListeners() {
       return;
     }
 
+    const previewSrc = previewImg.src;
+
     const newPost = {
       id: "FK-" + Date.now(),
       idea: caption,
       user: "@malik_founder",
+      isFounder: true,
       city: "Global Hub",
-      image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
+      image: previewSrc || "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
       remixes: 0,
       energy: 0,
       tag: document.querySelector(".tag-chip.active")?.dataset.tag || "Global",
       picked: false,
+      isModerated: true
     };
 
     appFeedData.unshift(newPost);
     saveData();
     renderFeed();
+
+    // Reset modal
+    document.getElementById("post-caption").value = "";
+    previewImg.classList.add("hide");
+    uploadPlaceholder.classList.remove("hide");
     document.getElementById("create-post-modal").classList.remove("active");
+
     showToast("✅ SIGNAL BROADCASTED");
   });
 
@@ -577,7 +614,12 @@ function createCard(post) {
         <div class="reel-caption-area">
             ${post.picked ? '<span class="picked-tag">PICKED BY ADMIN</span>' : ''}
             <span class="caption-tag">#${post.tag}</span>
-            <p class="caption-text"><strong>${post.user}</strong> ${post.idea}</p>
+            <p class="caption-text">
+                <strong>${post.user}</strong> 
+                ${post.user === '@malik_founder' || post.isFounder ? '<span class="founder-badge">FOUNDER</span>' : ''}
+                ${post.idea}
+            </p>
+            ${post.isModerated ? '<span class="moderated-note">Status: Verified by Admin Node</span>' : ''}
             <button class="view-remixes-link" onclick="remixIdea('${post.id}')">View all ${post.remixes} remixes</button>
         </div>
   `;
