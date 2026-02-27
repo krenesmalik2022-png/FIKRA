@@ -480,13 +480,17 @@ function createCard(post) {
 
     card.innerHTML = `
         <div class="ad-bg" style="background-image: ${bgImg};"></div>
+        <div class="propaganda-overlay"></div>
         <div class="reel-content ad-content">
             <div class="reel-tag ad-tag">${post.tag}</div>
             <h2 class="ad-header">${post.title}</h2>
             <p class="reel-idea ad-idea">${post.idea}</p>
         </div>
-        <div class="ad-footer">
-            <button class="ad-btn" onclick="showToast('Initiating Sync...')">CONNECT NOW</button>
+        <div class="reel-actions">
+            <button class="reel-btn info-btn" onclick="showToast('Initiating Sync...')">
+              <div class="reel-btn-icon">ℹ️</div>
+              <span class="reel-btn-count">Sync</span>
+            </button>
         </div>
     `;
     return card;
@@ -494,9 +498,26 @@ function createCard(post) {
 
   card.className =
     "reel-card" + (likedPosts.has(post.id) ? " liked-state" : "");
+
+  // Add double tap listener
+  let lastTap = 0;
+  card.addEventListener('touchend', (e) => {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+    if (tapLength < 300 && tapLength > 0) {
+      handleDoubleTap(post.id, card);
+      e.preventDefault();
+    }
+    lastTap = currentTime;
+  });
+  card.addEventListener('dblclick', () => {
+    handleDoubleTap(post.id, card);
+  });
+
   const initial = post.user.charAt(1).toUpperCase();
 
   card.innerHTML = `
+        <div class="double-tap-heart">❤️</div>
         <div class="reel-content">
             ${post.picked ? '<div class="picked-badge">PICKED</div>' : ""}
             <div class="reel-tag">${post.tag}</div>
@@ -525,6 +546,20 @@ function createCard(post) {
         </div>
     `;
   return card;
+}
+
+function handleDoubleTap(id, cardEl) {
+  const heart = cardEl.querySelector('.double-tap-heart');
+  if (heart) {
+    heart.classList.remove('animate-heart');
+    void heart.offsetWidth; // Trigger reflow
+    heart.classList.add('animate-heart');
+  }
+
+  if (!likedPosts.has(id)) {
+    const likeBtn = cardEl.querySelector('.like-btn');
+    toggleLike(id, likeBtn);
+  }
 }
 
 function toggleLike(id, btn) {
@@ -995,6 +1030,26 @@ function formatEnergy(n) {
   return n >= 1000 ? (n / 1000).toFixed(1) + "k" : n;
 }
 
+// ── THEME TOGGLE ──────────────────────────────────
+function toggleTheme() {
+  const body = document.body;
+  const isLight = body.classList.toggle("light-theme");
+  localStorage.setItem("fikra_theme", isLight ? "light" : "dark");
+  const btn = document.getElementById("theme-toggle");
+  if (btn) btn.textContent = isLight ? "☀️" : "🌙";
+}
+
+function applyStoredTheme() {
+  const saved = localStorage.getItem("fikra_theme");
+  if (saved === "light") {
+    document.body.classList.add("light-theme");
+    const btn = document.getElementById("theme-toggle");
+    if (btn) btn.textContent = "☀️";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", applyStoredTheme);
+
 function showToast(msg) {
   const t = document.getElementById("toast");
   if (!t) return;
@@ -1116,7 +1171,7 @@ function populateDashboard() {
   const totalDrops = data.length;
   const totalEnergy = data.reduce((s, p) => s + (p.energy || 0), 0);
   const totalRemixes = data.reduce((s, p) => s + (p.remixes || 0), 0);
-  const cities = [...new Set(data.map((p) => p.city))];
+  const cities = [...new Set(data.map((p) => p.city).filter(Boolean))];
   const impact = Math.round(totalEnergy / 500 + totalRemixes * 2);
 
   // ── Tactical KPIs
@@ -1177,8 +1232,8 @@ function buildEnergyChart(data) {
     };
   });
 
-  const maxE = Math.max(...points.map((p) => p.energy));
-  const maxR = Math.max(...points.map((p) => p.remixes)) * 80;
+  const maxE = Math.max(1, ...points.map((p) => p.energy || 0));
+  const maxR = Math.max(1, ...points.map((p) => p.remixes || 0)) * 80;
 
   const ex = (i) => PAD + (i / (days - 1)) * (W - PAD * 2);
   const ey = (v) => H - PAD - (v / maxE) * (H - PAD * 2);
@@ -1245,8 +1300,10 @@ function buildGlobe(data, cities) {
   const citiesWrap = document.getElementById("di-globe-cities");
   if (!nodesWrap || !citiesWrap) return;
 
+  const realCities = cities.filter(c => c !== undefined && c !== null);
+
   // Nodes scattered on globe
-  nodesWrap.innerHTML = cities
+  nodesWrap.innerHTML = realCities
     .slice(0, 8)
     .map((_, i) => {
       const angle = (i / 8) * Math.PI;
@@ -1267,7 +1324,7 @@ function buildGlobe(data, cities) {
     .join("");
 
   // City bars
-  const cityData = cities
+  const cityData = realCities
     .slice(0, 5)
     .map((city) => ({
       name: city,
@@ -1296,31 +1353,33 @@ function buildGlobe(data, cities) {
 /* ── Live Intel Logs ── */
 const EVENT_TEMPLATES = [
   (p) => ({
-    icon: "�",
-    msg: `INTEL ACQUIRED [${p.city.toUpperCase()}]: "${p.idea.slice(0, 35)}..."`,
+    icon: "📡",
+    msg: `INTEL ACQUIRED [${(p.city || "UNK").toUpperCase()}]: "${(p.idea || "").slice(0, 35)}..."`,
   }),
   (p) => ({
-    icon: "�️",
-    msg: `REINFORCEMENTS: ${p.remixes} supports detected on op "${p.idea.slice(0, 25)}"`,
+    icon: "🛡️",
+    msg: `REINFORCEMENTS: ${p.remixes || 0} supports detected on op "${(p.idea || "").slice(0, 25)}"`,
   }),
   (p) => ({
     icon: "⚡",
-    msg: `POWER SURGE: ${formatEnergy(p.energy)} energy units deployed to #${p.tag.toUpperCase()}`,
+    msg: `POWER SURGE: ${formatEnergy(p.energy || 0)} energy units deployed to #${(p.tag || "SYS").toUpperCase()}`,
   }),
   (p) => ({
     icon: "🎯",
-    msg: `SECTOR SECURED: ${p.city} engagement levels critical`,
+    msg: `SECTOR SECURED: ${p.city || "UNK"} engagement levels critical`,
   }),
   (p) => ({
     icon: "⚠️",
-    msg: `HIGH PRIORITY: "${p.idea.slice(0, 30)}..." gaining friction`,
+    msg: `HIGH PRIORITY: "${(p.idea || "").slice(0, 30)}..." gaining friction`,
   }),
 ];
 
 function buildLiveFeed(data) {
   const feed = document.getElementById("di-live-feed");
   if (!feed) return;
-  const shuffled = [...data].sort(() => Math.random() - 0.5).slice(0, 6);
+  const validData = data.filter(p => !p.isAd && p.city && p.idea);
+  if (validData.length === 0) return;
+  const shuffled = [...validData].sort(() => Math.random() - 0.5).slice(0, 6);
   feed.innerHTML = shuffled
     .map((p, i) => {
       const tmpl = EVENT_TEMPLATES[i % EVENT_TEMPLATES.length](p);

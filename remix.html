@@ -1,143 +1,440 @@
-< !DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="FIKRA — Build on existing intelligence."
-    />
-    <title>FIKRA — Remix</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="shared-nav.css" />
-    <link rel="stylesheet" href="tactical-dash.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="fikra-nav-offset">
-    <canvas id="bg-canvas"></canvas>
-    <nav class="fikra-nav">
-      <div class="fikra-nav-inner">
-        <a href="index.html" class="fikra-nav-logo"
-          ><span class="fikra-logo-text">FIKRA</span
-          ><span class="fikra-logo-dot">.</span></a
-        >
-        <div class="fikra-nav-divider"></div>
-        <div class="fikra-nav-links">
-          <a href="index.html" class="fikra-nav-link" id="snl-feed"
-            ><svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="8" y1="6" x2="21" y2="6" />
-              <line x1="8" y1="12" x2="21" y2="12" />
-              <line x1="8" y1="18" x2="21" y2="18" />
-              <line x1="3" y1="6" x2="3.01" y2="6" />
-              <line x1="3" y1="12" x2="3.01" y2="12" />
-              <line x1="3" y1="18" x2="3.01" y2="18" /></svg
-            >Feed </a
-          ><a href="profile.html" class="fikra-nav-link" id="snl-profile"
-            ><svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" /></svg
-            >Profile </a
-          ><a href="dashboard.html" class="fikra-nav-link" id="snl-dashboard"
-            ><svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <rect x="3" y="3" width="7" height="7" rx="1" />
-              <rect x="14" y="3" width="7" height="7" rx="1" />
-              <rect x="3" y="14" width="7" height="7" rx="1" />
-              <rect x="14" y="14" width="7" height="7" rx="1" /></svg
-            >My Intel
-          </a>
-        </div>
-        <div class="fikra-nav-right">
-          <button
-            id="theme-toggle"
-            class="fikra-nav-btn theme-toggle-btn"
-            onclick="toggleTheme()"
-            title="Toggle Theme"
-          >
-            🌙</button
-          ><a href="org-dashboard.html" class="fikra-nav-btn org-btn"
-            >Org Portal</a
-          ><a href="admin-dashboard.html" class="fikra-nav-btn admin-btn"
-            >Admin</a
-          >
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FIKRA — Build on existing intelligence." />
+  <title>FIKRA — Remix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="shared-nav.css" />
+  <link rel="stylesheet" href="tactical-dash.css" />
+  <style>
+    /* ── Remix Page Specific Styles ── */
+    .remix-page-body {
+      min-height: 100vh;
+      background: var(--bg-primary);
+    }
+
+    .remix-hero-bar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 32px 40px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .remix-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 8px 14px;
+      border: 1px solid var(--border-faint);
+      border-radius: 8px;
+      transition: var(--transition-fast);
+    }
+
+    .remix-back-btn:hover {
+      color: var(--text-primary);
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .remix-page-tag {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--purple-main);
+      background: rgba(138, 63, 255, 0.1);
+      border: 1px solid rgba(138, 63, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 99px;
+    }
+
+    .remix-op-badge {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .remix-op-badge .op-handle {
+      color: var(--purple-main);
+    }
+
+    /* ── Two-column layout ── */
+    .remix-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      padding: 28px 40px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .remix-layout {
+        grid-template-columns: 1fr;
+        padding: 20px 20px 60px;
+      }
+    }
+
+    /* ── Left: Original idea card ── */
+    .remix-original-pane {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .remix-pane-label {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .original-idea-card {
+      background: rgba(138, 63, 255, 0.05);
+      border: 1px solid rgba(138, 63, 255, 0.2);
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+      flex: 1;
+    }
+
+    .orig-tag {
+      font-size: 10px;
+      font-weight: 900;
+      color: var(--purple-main);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .orig-idea-text {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.55;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .orig-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* ── Remix Chain ── */
+    .remix-chain-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .remix-chain-title {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .remix-tree {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+    .remix-node {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-faint);
+      border-radius: 10px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--purple-main);
+    }
+
+    .remix-node-user {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--purple-main);
+      margin-bottom: 6px;
+    }
+
+    .remix-node-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .remix-empty-state {
+      color: var(--text-muted);
+      font-size: 13px;
+      text-align: center;
+      padding: 24px;
+      border: 1px dashed var(--border-faint);
+      border-radius: 12px;
+    }
+
+    /* ── Right: Input pane ── */
+    .remix-input-pane {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .remix-input-box {
+      background: rgba(10, 10, 10, 0.6);
+      border: 2px solid rgba(138, 63, 255, 0.25);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+      transition: border-color 0.3s;
+    }
+
+    .remix-input-box:focus-within {
+      border-color: var(--purple-main);
+      box-shadow: 0 0 40px rgba(138, 63, 255, 0.1);
+    }
+
+    .remix-prompt {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--purple-main);
+      text-transform: uppercase;
+    }
+
+    #remix-input {
+      width: 100%;
+      min-height: 200px;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.6;
+      resize: none;
+      outline: none;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    #remix-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .remix-input-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-faint);
+    }
+
+    #remix-char-counter {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .remix-go-btn {
+      background: var(--purple-main);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .remix-go-btn:hover {
+      background: #8A3FFF;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(123, 47, 255, 0.4);
+    }
+
+    .remix-go-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ── Tips box ── */
+    .remix-tips {
+      background: rgba(0, 210, 255, 0.04);
+      border: 1px solid rgba(0, 210, 255, 0.12);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .remix-tips-title {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--cyan-main);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .remix-tips ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .remix-tips li {
+      font-size: 13px;
+      color: var(--text-muted);
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .remix-tips li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--cyan-main);
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body class="fikra-nav-offset no-ticker remix-page-body">
+  <canvas id="bg-canvas"></canvas>
+
+  <nav class="fikra-nav">
+    <div class="fikra-nav-inner">
+      <a href="index.html" class="fikra-nav-logo">
+        <span class="fikra-logo-text">FIKRA</span>
+        <span class="fikra-logo-dot">.</span>
+      </a>
+      <div class="fikra-nav-divider"></div>
+      <div class="fikra-nav-links">
+        <a href="index.html" class="fikra-nav-link" id="snl-feed">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6" />
+            <line x1="8" y1="12" x2="21" y2="12" />
+            <line x1="8" y1="18" x2="21" y2="18" />
+            <line x1="3" y1="6" x2="3.01" y2="6" />
+          </svg>
+          Feed
+        </a>
+        <a href="profile.html" class="fikra-nav-link" id="snl-profile">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Profile
+        </a>
+        <a href="dashboard.html" class="fikra-nav-link" id="snl-dashboard">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" />
+          </svg>
+          My Intel
+        </a>
       </div>
-    </nav>
-    <div id="app" class="app-container site-layout">
-      <div class="site-main-content">
-        <section id="remix-screen" class="screen site-screen active opacity-1">
-          <canvas id="remix-canvas" class="canvas-bg"></canvas>
-          <div class="remix-header">
-            <a
-              href="index.html"
-              class="remix-close-btn"
-              id="close-remix-btn"
-              title="Close Remix"
-              >&times;
-            </a>
-            <div id="original-poster-badge" class="op-badge">
-              REMIXING @user
-            </div>
-          </div>
-          <div class="remix-layout">
-            <div class="remix-left">
-              <div id="original-card-anchor"></div>
-              <div class="remix-chain">
-                <h4>REMIX CHAIN</h4>
-                <div id="remix-tree" class="remix-tree"></div>
-              </div>
-            </div>
-            <div class="remix-right">
-              <div class="remix-input-box">
-                <textarea
-                  id="remix-input"
-                  placeholder="Build on this idea..."
-                ></textarea>
-                <div class="remix-input-meta">
-                  <span id="remix-char-counter">0 / 200</span
-                  ><button id="remix-submit-btn" class="remix-go-btn">
-                    DROP REMIX
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <div class="fikra-nav-right">
+        <button id="theme-toggle" class="fikra-nav-btn" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
       </div>
     </div>
-    <div id="toast" class="toast"></div>
-    <script src="app.js"></script>
-  </body>
+  </nav>
+
+  <div id="app" class="app-container site-layout">
+    <div class="site-main-content">
+      <section id="remix-screen" class="screen site-screen active opacity-1">
+
+        <!-- Hero bar -->
+        <div class="remix-hero-bar">
+          <a href="index.html" class="remix-back-btn" id="close-remix-btn">
+            ← Back to Feed
+          </a>
+          <span class="remix-page-tag">🔁 REMIX MODE</span>
+          <span class="remix-op-badge" id="original-poster-badge">
+            REMIXING <span class="op-handle">@user</span>
+          </span>
+        </div>
+
+        <!-- Main two-column layout -->
+        <div class="remix-layout">
+
+          <!-- Left: Original idea + chain -->
+          <div class="remix-original-pane">
+            <div class="remix-pane-label">Original Idea</div>
+            <div id="original-card-anchor">
+              <div class="original-idea-card">
+                <div class="orig-tag">Loading...</div>
+                <p class="orig-idea-text">Select an idea from the feed to remix it.</p>
+                <span class="orig-meta">Navigate back to the feed and click 🔁 on any card.</span>
+              </div>
+            </div>
+
+            <div class="remix-chain-section">
+              <div class="remix-chain-title">Remix Chain</div>
+              <div id="remix-tree" class="remix-tree">
+                <div class="remix-empty-state">No remixes yet. Be the first.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Input & submit -->
+          <div class="remix-input-pane">
+            <div class="remix-pane-label">Your Remix</div>
+            <div class="remix-input-box">
+              <div class="remix-prompt">&gt; ENTER REMIX SIGNAL</div>
+              <textarea id="remix-input" placeholder="Build on this idea... take it further, flip it, or challenge it."
+                maxlength="200"></textarea>
+              <div class="remix-input-footer">
+                <span id="remix-char-counter">0 / 200</span>
+                <button id="remix-submit-btn" class="remix-go-btn">
+                  🔁 DROP REMIX
+                </button>
+              </div>
+            </div>
+
+            <div class="remix-tips">
+              <div class="remix-tips-title">Remix Protocol</div>
+              <ul>
+                <li>Take the core idea and evolve it in a new direction</li>
+                <li>Challenge the assumption behind the original</li>
+                <li>Apply it to a different industry or context</li>
+                <li>Make it bigger, smaller, or more specific</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+
 </html>

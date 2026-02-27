@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIKRA — Community Impact</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="shared-nav.css">
+    <link rel="stylesheet" href="tactical-dash.css">
+    <style>
+        .explore-hero {
+            padding: 120px 40px 60px;
+            background: linear-gradient(180deg, rgba(123, 47, 255, 0.1) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .impact-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--tac-amber);
+            background: rgba(30, 30, 30, 0.8);
+        }
+
+        .impact-stat {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--tac-amber);
+            margin-bottom: 10px;
+        }
+
+        .impact-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+        }
+
+        .impact-story {
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+        }
+
+        .story-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .story-body {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .classified-stamp {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 10px;
+            color: rgba(255, 59, 59, 0.4);
+            border: 1px solid rgba(255, 59, 59, 0.4);
+            padding: 2px 6px;
+            transform: rotate(15deg);
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body class="immersive-theme">
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="fikra-nav immersive-nav">
+        <div class="fikra-nav-inner">
+            <a href="index.html" class="fikra-nav-logo">
+                <span class="fikra-logo-text">FIKRA</span>
+                <span class="fikra-logo-dot">.</span>
+            </a>
+            <div class="fikra-nav-divider"></div>
+            <div class="fikra-nav-links">
+                <a href="index.html" class="fikra-nav-link">Feed</a>
+                <a href="profile.html" class="fikra-nav-link">Profile</a>
+                <a href="dashboard.html" class="fikra-nav-link">My Intel</a>
+                <a href="explore.html" class="fikra-nav-link active">Explore</a>
+            </div>
+            <div class="fikra-nav-right">
+                <a href="index.html" class="fikra-nav-btn drop-btn">DROP IDEA</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="explore-hero">
+        <div class="propaganda-eyebrow">COMMUNITY_IMPACT_REPORT</div>
+        <h1 class="propaganda-title">REAL WORLD<br>RESULTS<span class="hero-title-dot">.</span></h1>
+        <p class="propaganda-sub">How $FIKRA is fueling the next generation of global ventures.</p>
+    </section>
+
+    <main class="impact-grid">
+        <div class="impact-card">
+            <div class="classified-stamp">SECURED</div>
+            <div class="impact-stat">122</div>
+            <div class="impact-label">Ideas Funded</div>
+            <div class="impact-story">
+                <div class="story-title">Solar Water Synth</div>
+                <p class="story-body">From a raw fikra in Cairo to 3 pilot stations providing clean water to 400
+                    households.</p>
+            </div>
+        </div>
+        <div class="impact-card">
+            <div class="classified-stamp">ACTIVE</div>
+            <div class="impact-stat">$1.4M</div>
+            <div class="impact-label">Capital Deployed</div>
+            <div class="impact-story">
+                <div class="story-title">Decentralized Logistics</div>
+                <p class="story-body">Connecting rural farmers directly to urban markets using localizedfikra protocols.
+                </p>
+            </div>
+        </div>
+        <div class="impact-card">
+            <div class="classified-stamp">GLOBAL</div>
+            <div class="impact-stat">42</div>
+            <div class="impact-label">Cities Reached</div>
+            <div class="impact-story">
+                <div class="story-title">Urban Rooftop Freq</div>
+                <p class="story-body">Underground radio network now broadcasting in 12 major hubs across 3 continents.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        // Ensure BG canvas works on new page
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.getElementById('bg-canvas');
+            if (canvas) {
+                // Initializing particles from app.js if exported or re-running locally
+                // For simplicity, we assume app.js handles it or we add a small shim
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,150 +1,161 @@
-﻿< !doctype html>
+﻿<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="FIKRA — A raw, unfiltered intelligence engine for the global youth generation."
-    />
-    < !-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://fikra.network/" />
-    <meta property="og:title" content="FIKRA — Global Raw Ideas" />
-    <meta
-      property="og:description"
-      content="Unfiltered intelligence from the next generation. Drop yours, remix others."
-    />
-    <meta property="og:image" content="https://fikra.network/og-image.jpg" />
-    <title>FIKRA — Global Raw Ideas</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="shared-nav.css" />
-    <link rel="stylesheet" href="tactical-dash.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="immersive-theme">
-    < !-- Background Canvas --><canvas id="bg-canvas"></canvas>< !-- UNIFIED TOP
-    NAV -->
-    <nav class="fikra-nav immersive-nav">
-      <div class="fikra-nav-inner">
-        <a href="index.html" class="fikra-nav-logo"
-          ><span class="fikra-logo-text">FIKRA</span
-          ><span class="fikra-logo-dot">.</span></a
-        >
-        <div class="fikra-nav-divider"></div>
-        < !-- Center Links -->
-        <div class="fikra-nav-links">
-          <a
-            href="index.html"
-            class="fikra-nav-link active"
-            id="snl-feed"
-            title="Browse the feed"
-            ><svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="8" y1="6" x2="21" y2="6" />
-              <line x1="8" y1="12" x2="21" y2="12" />
-              <line x1="8" y1="18" x2="21" y2="18" />
-              <line x1="3" y1="6" x2="3.01" y2="6" />
-              <line x1="3" y1="12" x2="3.01" y2="12" />
-              <line x1="3" y1="18" x2="3.01" y2="18" /></svg></a
-          ><a
-            href="profile.html"
-            class="fikra-nav-link"
-            id="snl-profile"
-            title="Your profile"
-            ><svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" /></svg
-          ></a>
-        </div>
-        < !-- Right Controls -->
-        <div class="fikra-nav-right">
-          <button
-            id="theme-toggle"
-            class="fikra-nav-btn"
-            onclick="toggleTheme()"
-            title="Toggle Mode"
-          >
-            🌙
-          </button>
-        </div>
-      </div>
-    </nav>
-    < !-- Filter Overlay -->
-    <div class="filter-bar immersive-filters" id="filter-bar">
-      <button class="filter-chip active" data-filter="all">All</button
-      ><button class="filter-chip" data-filter="Tech">Tech</button
-      ><button class="filter-chip" data-filter="Future">Future</button
-      ><button class="filter-chip" data-filter="Business">Business</button
-      ><button class="filter-chip" data-filter="Culture">Culture</button
-      ><button class="filter-chip" data-filter="Wellness">Wellness</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FIKRA — A raw, unfiltered intelligence engine for the global youth generation." />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fikra.network/" />
+  <meta property="og:title" content="FIKRA — Global Raw Ideas" />
+  <meta property="og:description"
+    content="Unfiltered intelligence from the next generation. Drop yours, remix others." />
+  <meta property="og:image" content="https://fikra.network/og-image.jpg" />
+  <title>FIKRA — Global Raw Ideas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="shared-nav.css" />
+  <link rel="stylesheet" href="tactical-dash.css" />
+</head>
+
+<body class="immersive-theme">
+  <!-- Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Global Live Ticker -->
+  <div class="global-live-ticker">
+    <div class="ticker-content">
+      <span class="ticker-item"><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM TOKYO</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>NEURAL SYNC ACTIVE: 1.2K THINKERS ONLINE</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>REMIX SIGNAL DETECTED IN LONDON</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>BROADCASTING GLOBAL INTELLIGENCE 24/7</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM NEW YORK</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM TOKYO</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>NEURAL SYNC ACTIVE: 1.2K THINKERS ONLINE</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>REMIX SIGNAL DETECTED IN LONDON</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>BROADCASTING GLOBAL INTELLIGENCE 24/7</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>LIVE TRANSMISSION: NEW IDEA FROM NEW YORK</span>
     </div>
-    < !-- APP CONTAINER -->
-    <main id="app" class="app-container site-layout">
-      < !-- Main Scroll Snapping Feed -->
-      <section
-        id="feed-screen"
-        class="screen active site-screen immersive-main"
-      >
-        < !-- First Frame: Hero -->
-        <article class="reel-frame hero-frame">
-          <div class="feed-hero immersive-hero">
-            <div class="feed-hero-left">
-              <h1 class="feed-hero-title">
-                Raw Intelligence<span class="hero-title-dot">.</span>
-              </h1>
-              <p class="feed-hero-sub">
-                The global pulse. Swipe up to explore.
-              </p>
-            </div>
-          </div>
-          <div class="scroll-indicator"><div class="scroll-arrow">↓</div></div>
-        </article>
-        < !-- Ideas Container (Display Contents for Snapping) -->
-        <section
-          id="ideas-container"
-          class="ideas-list immersive-reels-container"
-        ></section>
-      </section>
-    </main>
-    < !-- SUCCESS OVERLAY -->
-    <aside id="success-overlay" class="success-overlay">
-      <div class="so-content">
-        <div class="so-icon">✅</div>
-        <h2>MISSION SUCCESSFUL</h2>
-        <button
-          id="back-to-feed-btn"
-          class="so-btn"
-          onclick="window.location.href = 'index.html'"
-        >
-          RETURN TO COMMAND
-        </button>
+  </div>
+
+  <!-- Unified Top Nav -->
+  <nav class="fikra-nav immersive-nav">
+    <div class="fikra-nav-inner">
+      <a href="index.html" class="fikra-nav-logo">
+        <span class="fikra-logo-text">FIKRA</span>
+        <span class="fikra-logo-dot">.</span>
+      </a>
+      <div class="fikra-nav-divider"></div>
+      <!-- Center Nav Links -->
+      <div class="fikra-nav-links">
+        <a href="index.html" class="fikra-nav-link active" id="snl-feed" title="Browse the feed">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6" />
+            <line x1="8" y1="12" x2="21" y2="12" />
+            <line x1="8" y1="18" x2="21" y2="18" />
+            <line x1="3" y1="6" x2="3.01" y2="6" />
+            <line x1="3" y1="12" x2="3.01" y2="12" />
+            <line x1="3" y1="18" x2="3.01" y2="18" />
+          </svg>
+          Feed
+        </a>
+        <a href="profile.html" class="fikra-nav-link" id="snl-profile" title="Your profile">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Profile
+        </a>
+        <a href="dashboard.html" class="fikra-nav-link" id="snl-dashboard" title="My Intel Dashboard">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" />
+          </svg>
+          My Intel
+        </a>
+        <a href="explore.html" class="fikra-nav-link" id="snl-explore" title="Community Impact">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+          </svg>
+          Explore
+        </a>
       </div>
-    </aside>
-    <div id="toast" class="toast"></div>
-    <script src="app.js"></script>
-  </body>
+      <!-- Right Controls -->
+      <div class="fikra-nav-right">
+        <button id="theme-toggle" class="fikra-nav-btn" onclick="toggleTheme()" title="Toggle Mode">🌙</button>
+        <a href="org-dashboard.html" class="fikra-nav-btn org-btn">Org Portal</a>
+        <a href="admin-dashboard.html" class="fikra-nav-btn admin-btn">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar immersive-filters" id="filter-bar">
+    <button class="filter-chip active" data-filter="all">All</button>
+    <button class="filter-chip" data-filter="Tech">Tech</button>
+    <button class="filter-chip" data-filter="Future">Future</button>
+    <button class="filter-chip" data-filter="Business">Business</button>
+    <button class="filter-chip" data-filter="Culture">Culture</button>
+    <button class="filter-chip" data-filter="Wellness">Wellness</button>
+  </div>
+
+  <!-- App Container -->
+  <main id="app" class="app-container site-layout">
+    <!-- Feed Screen -->
+    <section id="feed-screen" class="screen active site-screen immersive-main immersive-reels-container">
+      <!-- Hero Frame -->
+      <!-- Propaganda About Section (Replaced Hero) -->
+      <article class="reel-frame propaganda-frame">
+        <div class="propaganda-bg" style="background-image: url('assets/propaganda_1.png');"></div>
+        <div class="propaganda-overlay"></div>
+        <div class="propaganda-content">
+          <div class="propaganda-eyebrow">MISSION_READY</div>
+          <h1 class="propaganda-title">FIKRA<span class="hero-title-dot">.</span></h1>
+          <p class="propaganda-sub">
+            The global youth intelligence engine. <br>
+            Raw ideas. Underground energy. Verified impact.
+          </p>
+          <div class="propaganda-actions">
+            <button class="propaganda-btn"
+              onclick="document.getElementById('ideas-container').scrollIntoView({behavior: 'smooth'})">ENTER THE
+              FEED</button>
+            <a href="explore.html" class="propaganda-btn outline">VIEW IMPACT</a>
+          </div>
+        </div>
+        <div class="scroll-indicator">
+          <div class="scroll-arrow">↓ SWIPE UP TO EXPLORE</div>
+        </div>
+      </article>
+      <!-- Ideas Container -->
+      <section id="ideas-container" class="ideas-list"></section>
+    </section>
+  </main>
+
+  <!-- Success Overlay -->
+  <aside id="success-overlay" class="success-overlay">
+    <div class="so-content">
+      <div class="so-icon">✅</div>
+      <h2>MISSION SUCCESSFUL</h2>
+      <button id="back-to-feed-btn" class="so-btn" onclick="window.location.href = 'index.html'">
+        RETURN TO COMMAND
+      </button>
+    </div>
+  </aside>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+
 </html>

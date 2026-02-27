@@ -267,9 +267,8 @@
 }
 
 /* ── Body offset (pages that use this nav must add this to body or wrapper) ── */
-.fikra-nav-offset {
-  padding-top: 64px;
-}
+/* padding-top is set at the bottom of this file to include ticker height */
+
 
 /* ── Responsive ── */
 /* ── Global Live Ticker ── */
@@ -362,6 +361,11 @@
 .fikra-nav-offset {
   padding-top: 92px;
   /* 64px (nav) + 28px (ticker) */
+}
+
+/* Pages without the live ticker use this modifier */
+.fikra-nav-offset.no-ticker {
+  padding-top: 64px;
 }
 
 @media (max-width: 768px) {
