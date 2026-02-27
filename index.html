@@ -211,51 +211,82 @@
 
     <!-- Feed Screen (Legacy / Secondary) -->
 
-  </main>
-
-  <!-- Success Overlay -->
-  <aside id="success-overlay" class="success-overlay">
-    <div class="so-content">
-      <div class="so-icon">✅</div>
-      <h2>MISSION SUCCESSFUL</h2>
-      <button id="back-to-feed-btn" class="so-btn" onclick="window.location.href = 'index.html'">
-        RETURN TO COMMAND
-      </button>
-    </div>
-  </aside>
-
-  <!-- Create Post Modal -->
-  <aside id="create-post-modal" class="success-overlay glass-panel">
-    <div class="so-content create-modal-content">
-      <div class="modal-header">
-        <h2>NEW <span class="gold-text">INTELLIGENCE</span></h2>
-        <button class="close-modal-btn"
-          onclick="document.getElementById('create-post-modal').classList.remove('active')">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="media-upload-zone" id="media-upload-zone">
-          <div class="upload-placeholder">
-            <span class="upload-icon">📸</span>
-            <p>Select Photos or Videos</p>
+    <!-- Premium Footer -->
+    <footer class="fikra-premium-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="gold-text">FIKRA<span class="white-text">.</span></h3>
+          <p>Global Intelligence Collective</p>
+          <div class="founder-credit">
+            <span class="label">FOUNDER</span>
+            <span class="founder-name">MALIK</span>
           </div>
-          <img id="preview-img" class="hide" alt="Preview">
-          <video id="preview-video" class="hide" controls></video>
         </div>
-        <textarea id="post-caption" placeholder="Share your global fikra..."></textarea>
-        <div class="modal-footer">
-          <div class="tag-selector">
-            <button class="tag-chip active" data-tag="Tech">Tech</button>
-            <button class="tag-chip" data-tag="Culture">Culture</button>
-            <button class="tag-chip" data-tag="Future">Future</button>
+        <div class="footer-links">
+          <a href="index.html">FEED</a>
+          <a href="explore.html">EXPLORE</a>
+          <a href="dashboard.html">DASHBOARD</a>
+          <a href="org-dashboard.html">ORG PORTAL</a>
+        </div>
+        <div class="footer-status">
+          <div class="status-item">
+            <span class="status-dot"></span>
+            NETWORK: STABLE
           </div>
-          <button id="broadcast-btn" class="premium-btn highlight">BROADCAST</button>
+          <div class="status-item">
+            <span class="status-dot"></span>
+            MODS: ACTIVE
+          </div>
         </div>
       </div>
-    </div>
-  </aside>
+      <div class="footer-bottom">
+        <p>&copy; 2026 FIKRA NETWORK. GLOBAL RAW IDEAS ONLY.</p>
+      </div>
+    </footer>
 
-  <div id="toast" class="toast"></div>
-  <script src="app.js"></script>
+    <!-- Success Overlay -->
+    <aside id="success-overlay" class="success-overlay">
+      <div class="so-content">
+        <div class="so-icon">✅</div>
+        <h2>MISSION SUCCESSFUL</h2>
+        <button id="back-to-feed-btn" class="so-btn" onclick="window.location.href = 'index.html'">
+          RETURN TO COMMAND
+        </button>
+      </div>
+    </aside>
+
+    <!-- Create Post Modal -->
+    <aside id="create-post-modal" class="success-overlay glass-panel">
+      <div class="so-content create-modal-content">
+        <div class="modal-header">
+          <h2>NEW <span class="gold-text">INTELLIGENCE</span></h2>
+          <button class="close-modal-btn"
+            onclick="document.getElementById('create-post-modal').classList.remove('active')">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="media-upload-zone" id="media-upload-zone">
+            <div class="upload-placeholder">
+              <span class="upload-icon">📸</span>
+              <p>Select Photos or Videos</p>
+            </div>
+            <img id="preview-img" class="hide" alt="Preview">
+            <video id="preview-video" class="hide" controls></video>
+          </div>
+          <textarea id="post-caption" placeholder="Share your global fikra..."></textarea>
+          <div class="modal-footer">
+            <div class="tag-selector">
+              <button class="tag-chip active" data-tag="Tech">Tech</button>
+              <button class="tag-chip" data-tag="Culture">Culture</button>
+              <button class="tag-chip" data-tag="Future">Future</button>
+            </div>
+            <button id="broadcast-btn" class="premium-btn highlight">BROADCAST</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div id="toast" class="toast"></div>
+    <script src="app.js"></script>
 </body>
 
 </html>

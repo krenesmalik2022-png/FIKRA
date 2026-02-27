@@ -62,7 +62,7 @@ const MOCK_DATA = [
   },
   {
     id: "FK-D2",
-    idea: "Blueprints for the first youth-owned satellite node.",
+    idea: "Blueprints for the first youth-owned satellite node. We launch from the desert.",
     user: "@space_kid",
     city: "Global",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
@@ -70,6 +70,28 @@ const MOCK_DATA = [
     energy: 3100,
     tag: "Tech",
     picked: false,
+  },
+  {
+    id: "FK-NYC",
+    idea: "Midnight hackathon in a subway car. No WiFi, only mesh networks.",
+    user: "@transit_hacker",
+    city: "New York",
+    image: "https://images.unsplash.com/photo-1545156521-77bd85671d30?auto=format&fit=crop&q=80&w=800",
+    remixes: 88,
+    energy: 4500,
+    tag: "Tech",
+    picked: false,
+  },
+  {
+    id: "FK-BER",
+    idea: "The acoustics in these old bunkers is prime for illegal ambient drops.",
+    user: "@echo_chamber",
+    city: "Berlin",
+    video: "https://assets.mixkit.co/videos/preview/mixkit-slow-motion-of-a-dj-playing-at-a-party-40010-large.mp4",
+    remixes: 120,
+    energy: 8900,
+    tag: "Culture",
+    picked: true,
   }
 ];
 
