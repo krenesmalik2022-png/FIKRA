@@ -284,25 +284,15 @@ a {
 /* ── Global Animations ── */
 
 @keyframes slideUpFade {
-
-    from {
-
+    0% {
         opacity: 0;
-
-        transform: translateY(30px);
-
+        transform: translateY(40px);
     }
 
-
-
-    to {
-
+    100% {
         opacity: 1;
-
         transform: translateY(0);
-
     }
-
 }
 
 
@@ -1041,16 +1031,23 @@ a {
 }
 
 
-/* ── Reveal Animations ── */
-.reveal-hidden {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+/* ── Feed Section Container ── */
+.feed-section-container {
+    padding: 100px 0;
+    background: #000;
 }
 
-.reveal-active {
-    opacity: 1;
-    transform: translateY(0);
+.ideas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 60px;
+    align-items: center;
+}
+
+/* Fix Reveal for Feed Cards */
+.reel-card.reveal {
+    animation: slideUpFade 0.8s ease forwards;
 }
 
 .impact-stat.reveal-hidden {

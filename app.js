@@ -479,10 +479,10 @@ function renderFeed() {
   filtered.forEach((post, index) => {
     const card = createCard(post);
     container.appendChild(card);
+    // Use individual reveal timers or observer
     setTimeout(() => {
-      if (cardObserver) cardObserver.observe(card);
-      else card.classList.add("reveal");
-    }, index * 40);
+      card.classList.add("reveal");
+    }, index * 100);
   });
 }
 
