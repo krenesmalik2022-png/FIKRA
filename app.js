@@ -7,9 +7,10 @@
 const MOCK_DATA = [
   {
     id: "FK-1092",
-    idea: "What if there was a barber shop where you pay with content — post a review, get a free cut.",
+    idea: "The vibe at this new Riyadh hybrid space is unreal. Pay for coffee with code contributions.",
     user: "@zah_creates",
     city: "Riyadh",
+    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800",
     remixes: 142,
     energy: 9800,
     tag: "Business",
@@ -17,9 +18,10 @@ const MOCK_DATA = [
   },
   {
     id: "FK-2281",
-    idea: "An app that translates silence. You record dead air and it tells you what the vibe was.",
+    idea: "Sunset synth sessions in Cairo. Decoding the Nile's frequency.",
     user: "@moody_dev",
     city: "Cairo",
+    video: "https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-abstract-shapes-rolling-2766-large.mp4",
     remixes: 87,
     energy: 6400,
     tag: "Tech",
@@ -27,9 +29,10 @@ const MOCK_DATA = [
   },
   {
     id: "FK-7740",
-    idea: "Youth-run underground radio that broadcasts from random rooftops every Friday night.",
-    user: "@streetfreq",
-    city: "Amman",
+    idea: "Tokyo night walks. Every light tells a different story if you look long enough.",
+    user: "@neo_tokyo",
+    city: "Tokyo",
+    image: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&q=80&w=800",
     remixes: 310,
     energy: 15200,
     tag: "Culture",
@@ -37,9 +40,10 @@ const MOCK_DATA = [
   },
   {
     id: "FK-0032",
-    idea: "A sneaker brand that drops 1 pair per city per week. Exclusivity is the whole product.",
+    idea: "Dubai's next drop is digital only. No physicals, just pure pixel exclusivity.",
     user: "@drip_theory",
     city: "Dubai",
+    image: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800",
     remixes: 200,
     energy: 11300,
     tag: "Business",
@@ -47,64 +51,26 @@ const MOCK_DATA = [
   },
   {
     id: "FK-8812",
-    idea: "Mental health check-ins disguised as daily mood playlists, auto-generated from your listening.",
+    idea: "Neural pathways as abstract art. London's digital underground.",
     user: "@freq_mind",
-    city: "Cairo",
+    city: "London",
+    video: "https://assets.mixkit.co/videos/preview/mixkit-strobe-light-flashing-on-a-digital-surface-32966-large.mp4",
     remixes: 415,
     energy: 21000,
     tag: "Wellness",
     picked: true,
   },
   {
-    id: "FK-D1",
-    idea: "Solar-powered water synthesisers for arid regions.",
-    user: "@desert_tech",
-    city: "Dubai",
-    remixes: 8,
-    energy: 1500,
-    tag: "Future",
-    picked: true,
-  },
-  {
-    id: "AD-001",
-    isAd: true,
-    title: "ENCRYPT YOUR MIND",
-    idea: "The surface web is compromised. Shield your neural pathways. Join the Underground Protocol.",
-    image:
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=600",
-    tag: "PROPAGANDA",
-    energy: 99999,
-  },
-  {
     id: "FK-D2",
-    idea: "Decentralized logistics for rural agriculture co-ops.",
-    user: "@farm_chain",
-    city: "Casablanca",
+    idea: "Blueprints for the first youth-owned satellite node.",
+    user: "@space_kid",
+    city: "Global",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
     remixes: 15,
     energy: 3100,
     tag: "Tech",
     picked: false,
-  },
-  {
-    id: "AD-002",
-    isAd: true,
-    title: "GLOBAL SYNC ACTIVE",
-    idea: "1.2M nodes connected. Do not disconnect during the feed transfer. The system requires your processing power.",
-    image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600",
-    tag: "SYSTEM DIRECTIVE",
-    energy: 99999,
-  },
-  {
-    id: "AD-003",
-    isAd: true,
-    title: "BECOME THE ANOMALY",
-    idea: "Break out of the algorithm. Remix the truth. We are looking for operators.",
-    image:
-      "https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?auto=format&fit=crop&q=80&w=600",
-    tag: "RECRUITMENT",
-    energy: 99999,
-  },
+  }
 ];
 
 let appFeedData = [];
@@ -430,6 +396,33 @@ function setupEventListeners() {
     .getElementById("remix-submit-btn")
     ?.addEventListener("click", handleRemixSubmit);
 
+  // Broadcast Button Logic
+  document.getElementById("broadcast-btn")?.addEventListener("click", () => {
+    const caption = document.getElementById("post-caption").value.trim();
+    if (caption.length < 5) {
+      showToast("Caption too short.");
+      return;
+    }
+
+    const newPost = {
+      id: "FK-" + Date.now(),
+      idea: caption,
+      user: "@malik_founder",
+      city: "Global Hub",
+      image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
+      remixes: 0,
+      energy: 0,
+      tag: document.querySelector(".tag-chip.active")?.dataset.tag || "Global",
+      picked: false,
+    };
+
+    appFeedData.unshift(newPost);
+    saveData();
+    renderFeed();
+    document.getElementById("create-post-modal").classList.remove("active");
+    showToast("✅ SIGNAL BROADCASTED");
+  });
+
   window.addEventListener("resize", () => {
     if (typeof bgCanvas !== "undefined" && bgCanvas) {
       initParticles();
@@ -539,34 +532,63 @@ function createCard(post) {
   const initial = post.user.charAt(1).toUpperCase();
 
   card.innerHTML = `
-        <div class="double-tap-heart">❤️</div>
-        <div class="reel-content">
-            ${post.picked ? '<div class="picked-badge">PICKED</div>' : ""}
-            <div class="reel-tag">${post.tag}</div>
-            <p class="reel-idea">${post.idea}</p>
-            <div class="reel-meta">
-                <div class="user-avatar">${initial}</div>
-                <div class="user-details">
-                    <span class="name">${post.user}</span>
-                    <span class="city">${post.city}</span>
+        <div class="reel-card-header">
+            <div class="user-meta-top">
+                <div class="user-avatar-sm" style="background: ${selectedColor}">${initial}</div>
+                <div class="user-info-sm">
+                    <span class="name-sm">${post.user}</span>
+                    <span class="city-sm">${post.city}</span>
                 </div>
             </div>
+            <button class="more-options-btn">•••</button>
         </div>
-        <div class="reel-actions">
-            <button class="reel-btn like-btn" onclick="toggleLike('${post.id}', this)">
-                <div class="reel-btn-icon"><span class="like-icon">⚡</span></div>
-                <span class="reel-btn-count like-count">${formatEnergy(post.energy)}</span>
-            </button>
-            <button class="reel-btn remix-btn" onclick="remixIdea('${post.id}')">
-                <div class="reel-btn-icon">🔁</div>
-                <span class="reel-btn-count">${post.remixes}</span>
-            </button>
-            <button class="reel-btn share-btn" onclick="showToast('Link copied!')">
-                <div class="reel-btn-icon">📤</div>
-                <span class="reel-btn-count">Share</span>
-            </button>
+        
+        <div class="reel-media-container">
+            ${post.video ? `
+                <video class="reel-media-video" loop muted playsinline>
+                    <source src="${post.video}" type="video/mp4">
+                </video>
+                <div class="video-overlay"><span class="play-icon">▶</span></div>
+            ` : post.image ? `
+                <img src="${post.image}" class="reel-media-img" alt="Idea Visual">
+            ` : `
+                <div class="text-media-fallback">${post.idea.substring(0, 100)}...</div>
+            `}
+            <div class="double-tap-heart">❤️</div>
         </div>
-    `;
+
+        <div class="reel-interaction-tray">
+            <div class="tray-left">
+                <button class="tray-btn like-btn" onclick="toggleLike('${post.id}', this)">
+                    <span class="tray-icon">${likedPosts.has(post.id) ? '⚡' : '🤍'}</span>
+                </button>
+                <button class="tray-btn remix-btn" onclick="remixIdea('${post.id}')">
+                    <span class="tray-icon">🔁</span>
+                </button>
+                <button class="tray-btn share-btn" onclick="showToast('Link copied!')">
+                    <span class="tray-icon">📤</span>
+                </button>
+            </div>
+            <div class="tray-right">
+                <span class="energy-count">${formatEnergy(post.energy)} energy</span>
+            </div>
+        </div>
+
+        <div class="reel-caption-area">
+            ${post.picked ? '<span class="picked-tag">PICKED BY ADMIN</span>' : ''}
+            <span class="caption-tag">#${post.tag}</span>
+            <p class="caption-text"><strong>${post.user}</strong> ${post.idea}</p>
+            <button class="view-remixes-link" onclick="remixIdea('${post.id}')">View all ${post.remixes} remixes</button>
+        </div>
+  `;
+
+  // Add video play/pause on hover or scroll
+  const video = card.querySelector('video');
+  if (video) {
+    card.addEventListener('mouseenter', () => video.play());
+    card.addEventListener('mouseleave', () => video.pause());
+  }
+
   return card;
 }
 
@@ -650,7 +672,7 @@ function remixIdea(postId) {
                 <p class="orig-idea-text">${post.idea}</p>
                 <span class="orig-meta">${post.user} · ${post.city}</span>
             </div>
-        `;
+    `;
   }
 
   const treeEl = document.getElementById("remix-tree");
@@ -659,15 +681,15 @@ function remixIdea(postId) {
       treeEl.innerHTML = post.remixChain
         .map(
           (r) => `
-                <div class="remix-node">
+    < div class="remix-node" >
                     <div class="remix-node-user">${r.user}</div>
                     <p class="remix-node-text">${r.text}</p>
-                </div>
-            `,
+                </div >
+    `,
         )
         .join("");
     } else {
-      treeEl.innerHTML = `<div class="remix-empty-state">No remixes yet. Be the first.</div>`;
+      treeEl.innerHTML = `< div class="remix-empty-state" > No remixes yet.Be the first.</div > `;
     }
   }
 
@@ -876,25 +898,25 @@ function renderDropCards(containerId, posts) {
 
   if (!posts || posts.length === 0) {
     container.innerHTML = `
-            <div class="ps-empty" style="grid-column: 1/-1;">
+    < div class="ps-empty" style = "grid-column: 1/-1;" >
                 <span class="ps-empty-icon">💡</span>
                 <p>No fikras dropped yet. Release your first idea!</p>
                 <button class="ps-empty-cta" onclick="siteNav('drop', document.getElementById('snl-drop'))">Drop a Fikra</button>
-            </div>`;
+            </div > `;
     return;
   }
 
   container.innerHTML = posts
     .map(
       (p) => `
-        <div class="ps-drop-card">
+    < div class="ps-drop-card" >
             <div class="ps-drop-tag">${p.tag}</div>
             <p class="ps-drop-idea">${p.idea}</p>
             <div class="ps-drop-meta">
                 <span>${p.city}</span>
                 <span class="ps-drop-energy">⚡ ${formatEnergy(p.energy)}</span>
             </div>
-        </div>
+        </div >
     `,
     )
     .join("");
@@ -906,25 +928,25 @@ function renderRemixCards(containerId, remixes) {
 
   if (!remixes || remixes.length === 0) {
     container.innerHTML = `
-            <div class="ps-empty" style="grid-column: 1/-1;">
+    < div class="ps-empty" style = "grid-column: 1/-1;" >
                 <span class="ps-empty-icon">🔁</span>
                 <p>No remixes yet. Remix an idea from the feed!</p>
                 <button class="ps-empty-cta" onclick="siteNav('feed', document.getElementById('snl-feed'))">Browse Feed</button>
-            </div>`;
+            </div > `;
     return;
   }
 
   container.innerHTML = remixes
     .map(
       (r) => `
-        <div class="ps-drop-card">
+    < div class="ps-drop-card" >
             <div class="ps-drop-tag">${r.tag || "Remix"} · from ${r.origUser || "@?"}</div>
             <p class="ps-drop-idea">${r.text}</p>
             <div class="ps-drop-meta">
                 <span>${r.user}</span>
                 <span class="ps-drop-energy">🔁 Remix</span>
             </div>
-        </div>
+        </div >
     `,
     )
     .join("");
@@ -954,7 +976,7 @@ function switchProfileTabByPanel(panelId) {
     .forEach((p) => p.classList.remove("active"));
   const panel = document.getElementById(panelId);
   if (panel) panel.classList.add("active");
-  const tab = document.querySelector(`.ps-tab[data-panel="${panelId}"]`);
+  const tab = document.querySelector(`.ps - tab[data - panel="${panelId}"]`);
   if (tab) tab.classList.add("active");
 }
 
@@ -964,7 +986,7 @@ function shareProfile() {
   if (navigator.share) {
     navigator.share({
       title: `${name} on FIKRA`,
-      text: `Check out ${name}'s ideas on FIKRA!`,
+      text: `Check out ${name} 's ideas on FIKRA!`,
       url: window.location.href,
     });
   } else {

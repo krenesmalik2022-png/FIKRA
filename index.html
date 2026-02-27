@@ -95,6 +95,9 @@
       <!-- Right Controls -->
       <div class="fikra-nav-right">
         <button id="theme-toggle" class="fikra-nav-btn" onclick="toggleTheme()" title="Toggle Mode">🌙</button>
+        <button class="fikra-nav-btn create-btn"
+          onclick="document.getElementById('create-post-modal').classList.add('active')" title="Create Post">➕
+          Create</button>
         <a href="org-dashboard.html" class="fikra-nav-btn org-btn">Org Portal</a>
         <a href="admin-dashboard.html" class="fikra-nav-btn admin-btn">Admin</a>
       </div>
@@ -210,6 +213,36 @@
       <button id="back-to-feed-btn" class="so-btn" onclick="window.location.href = 'index.html'">
         RETURN TO COMMAND
       </button>
+    </div>
+  </aside>
+
+  <!-- Create Post Modal -->
+  <aside id="create-post-modal" class="success-overlay glass-panel">
+    <div class="so-content create-modal-content">
+      <div class="modal-header">
+        <h2>NEW <span class="gold-text">INTELLIGENCE</span></h2>
+        <button class="close-modal-btn"
+          onclick="document.getElementById('create-post-modal').classList.remove('active')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="media-upload-zone" id="media-upload-zone">
+          <div class="upload-placeholder">
+            <span class="upload-icon">📸</span>
+            <p>Select Photos or Videos</p>
+          </div>
+          <img id="preview-img" class="hide" alt="Preview">
+          <video id="preview-video" class="hide" controls></video>
+        </div>
+        <textarea id="post-caption" placeholder="Share your global fikra..."></textarea>
+        <div class="modal-footer">
+          <div class="tag-selector">
+            <button class="tag-chip active" data-tag="Tech">Tech</button>
+            <button class="tag-chip" data-tag="Culture">Culture</button>
+            <button class="tag-chip" data-tag="Future">Future</button>
+          </div>
+          <button id="broadcast-btn" class="premium-btn highlight">BROADCAST</button>
+        </div>
+      </div>
     </div>
   </aside>
 
