@@ -113,32 +113,91 @@
 
   <!-- App Container -->
   <main id="app" class="app-container site-layout">
-    <!-- Feed Screen -->
-    <section id="feed-screen" class="screen active site-screen immersive-main immersive-reels-container">
-      <!-- Hero Frame -->
-      <!-- Propaganda About Section (Replaced Hero) -->
-      <article class="reel-frame propaganda-frame">
-        <div class="propaganda-bg" style="background-image: url('assets/propaganda_1.png');"></div>
-        <div class="propaganda-overlay"></div>
-        <div class="propaganda-content">
-          <div class="propaganda-eyebrow">MISSION_READY</div>
-          <h1 class="propaganda-title">FIKRA<span class="hero-title-dot">.</span></h1>
-          <p class="propaganda-sub">
-            The global youth intelligence engine. <br>
-            Raw ideas. Underground energy. Verified impact.
-          </p>
-          <div class="propaganda-actions">
-            <button class="propaganda-btn"
-              onclick="document.getElementById('ideas-container').scrollIntoView({behavior: 'smooth'})">ENTER THE
-              FEED</button>
-            <a href="explore.html" class="propaganda-btn outline">VIEW IMPACT</a>
+    <!-- Homepage Premium Sections -->
+    <section id="homepage-sections" class="screen active">
+      <!-- Hero Section -->
+      <header class="hero-section premium-hero">
+        <div class="hero-bg" style="background-image: url('assets/exclusive_hero_intel_1772178577115.png');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-badge">THE EXCLUSIVE ACCESS</div>
+          <h1 class="hero-main-title">RAW <span class="gold-text">INTELLIGENCE</span></h1>
+          <p class="hero-tagline">Access the global youth collective. Unfiltered. Decentralized. Premium.</p>
+          <div class="hero-cta">
+            <button class="premium-btn primary"
+              onclick="document.getElementById('about-engine').scrollIntoView({behavior: 'smooth'})">EXPLORE THE
+              CORE</button>
+            <button class="premium-btn secondary" onclick="window.location.href='explore.html'">VIEW IMPACT</button>
           </div>
         </div>
-        <div class="scroll-indicator">
-          <div class="scroll-arrow">↓ SWIPE UP TO EXPLORE</div>
+        <div class="scroll-down-hint">↓</div>
+      </header>
+
+      <!-- About Section -->
+      <section id="about-engine" class="about-section">
+        <div class="section-container">
+          <div class="about-grid">
+            <div class="about-visual">
+              <div class="visual-frame glass-panel">
+                <img src="assets/fikra_engine_core_1772178599670.png" alt="Intelligence Core" class="premium-img">
+              </div>
+            </div>
+            <div class="about-text">
+              <h2 class="section-title">THE ENGINE <span class="purple-glow-text">CORE.</span></h2>
+              <p class="section-desc">Fikra is not just an app. It's a high-performance engine for mining the world's
+                most valuable resource: <span class="white-text">Next-Gen Perspective.</span></p>
+              <ul class="engine-features">
+                <li><strong>Neural Sync:</strong> Real-time ideation mapping.</li>
+                <li><strong>Global Reach:</strong> Insights from 150+ underground hubs.</li>
+                <li><strong>Verified Impact:</strong> Ideas that shape actual outcomes.</li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </article>
-      <!-- Ideas Container -->
+      </section>
+
+      <!-- Impact Showcase -->
+      <section id="impact-showcase" class="impact-section">
+        <div class="impact-bg" style="background-image: url('assets/global_impact_premium_1772178614271.png');"></div>
+        <div class="impact-overlay"></div>
+        <div class="section-container">
+          <div class="impact-content text-center">
+            <h2 class="section-title">GLOBAL <span class="gold-text">IMPACT.</span></h2>
+            <div class="impact-stats-grid">
+              <div class="impact-stat glass-panel">
+                <span class="stat-num">1.2M</span>
+                <span class="stat-label">RAW IDEAS</span>
+              </div>
+              <div class="impact-stat glass-panel">
+                <span class="stat-num">45K</span>
+                <span class="stat-label">REMIXES</span>
+              </div>
+              <div class="impact-stat glass-panel">
+                <span class="stat-num">120+</span>
+                <span class="stat-label">REAL WORLD HITS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Network Section -->
+      <section id="network-section" class="network-section">
+        <div class="section-container">
+          <div class="network-header text-center">
+            <h2 class="section-title">THE <span class="purple-glow-text">NETWORK.</span></h2>
+            <p class="section-desc">A secure node for the world's most innovative thinkers.</p>
+          </div>
+          <div class="network-cta text-center">
+            <button class="premium-btn highlight" onclick="window.location.href='dashboard.html'">ENTER YOUR COMMAND
+              CENTER</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Feed Screen (Legacy / Secondary) -->
+    <section id="feed-screen" class="screen site-screen immersive-main immersive-reels-container">
       <section id="ideas-container" class="ideas-list"></section>
     </section>
   </main>
